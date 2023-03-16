@@ -1,6 +1,17 @@
-# Base de code du projet P6 - Parcours Front-end
+# Créez un site accessible pour une plateforme de photographes - Projet 6
+https://github.com/CamilleStagiaire/FishEye.git
 
-## Démarrer le projet
+*Formation Développeur d'application - JavaScript React*
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+# Etapes
+* installation et configuration des modules :
+- Sass
+- Eslint
+* les modules JavaScript:
+- intégrer les instructions import et export
+
+* Initialisation de package.json
+
+
+# Compétences évaluées:
 

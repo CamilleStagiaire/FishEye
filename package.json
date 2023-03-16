@@ -1,0 +1,27 @@
+{
+  "name": "fisheye",
+  "version": "1.0.0",
+  "description": "Front-End-Fisheye",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/style.scss:./css/style.css",
+    "compile": "sass sass/style.scss ./css/style.css --style=compressed --no-source-map",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CamilleStagiaire/FishEye.git"
+  },
+  "author": "Camille",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CamilleStagiaire/FishEye/issues"
+  },
+  "homepage": "https://github.com/CamilleStagiaire/FishEye#readme",
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.27.5"
+  }
+}
