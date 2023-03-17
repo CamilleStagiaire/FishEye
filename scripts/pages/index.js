@@ -1,47 +1,28 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable max-len */
-/* eslint-disable linebreak-style */
-async function getPhotographers() {
-  // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,
-  // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-  const photographers = [
-    {
-      name: 'Ma data test',
-      id: 1,
-      city: 'Paris',
-      country: 'France',
-      tagline: 'Ceci est ma data test',
-      price: 400,
-      portrait: 'account.png',
-    },
-    {
-      name: 'Autre data test',
-      id: 2,
-      city: 'Londres',
-      country: 'UK',
-      tagline: 'Ceci est ma data test 2',
-      price: 500,
-      portrait: 'account.png',
-    },
-  ];
-  // et bien retourner le tableau photographers seulement une fois récupéré
-  return ({ photographers: [...photographers, ...photographers, ...photographers] });
+class PhotographerCard {
+  constructor(photographer) {
+    this._photographer = photographer
+  }
+
+  createPhotographerCard() {
+    const $wrapper = document.createElement('article')
+    $wrapper.classList.add('photographer')
+
+    const photographerCard = `
+      <div class="photographer-portrait">
+        <img
+          alt="${this._photographer.name}"
+          src="${this._photographer.portrait}"
+      </div>
+      <h2 class="photographer-name">${this._photographer.name}</h2>
+      <h3 class="photographer-location">
+        <span class="photographer-location-city">${this._photographer.city}</span>,
+        <span class="photographer-location-country">${this._photographer.country}</span>
+      </h3>
+      <p class="photographer-tagline">${this._photographer.tagline}</p>
+      <p class="photographer-price">${this._photographer.price}€/jour</p>
+    `
+
+    $wrapper.innerHTML = photographerCard
+    return $wrapper
+  }
 }
-
-async function displayData(photographers) {
-  const photographersSection = document.querySelector('.photographer_section');
-
-  photographers.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
-  });
-}
-
-async function init() {
-  // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
-  displayData(photographers);
-}
-
-init();

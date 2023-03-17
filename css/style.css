@@ -107,6 +107,7 @@ h1 {
   cursor: pointer;
 }
 
+/* modale de contact */
 .contact {
   display: none;
 }
@@ -134,7 +135,6 @@ h1 {
   text-align: center;
 }
 
-/* modale */
 form {
   display: flex;
   width: 100%;
