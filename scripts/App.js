@@ -2,13 +2,10 @@ class App {
   constructor() {
     this.$photographersSection = document.querySelector('.photographer_section')
     this.photographersApi = new PhotographerApi('/data/photographers.json')
-    
-   
   }
     
   async main() {
     const photographersData = await this.photographersApi.getPhotographers()
-    
 
     photographersData
       .map(photographer => new Photographer(photographer))
@@ -18,28 +15,24 @@ class App {
       const Template = new PhotographerCard(photographer)
       this.$photographersSection.appendChild(Template.createPhotographerCard())
 
-    });
-  }
-
-
-  async photographer() {
-    const mediaData = await this.photographersApi.getPhotographers()
-
-    mediaData
-      .map(media => new Media(media))
-      .forEach(media  => {
+      // lancement des pages au click
+      //const page = document.querySelectorAll(".photographer");
+      //page.forEach((page) => page.addEventListener("click", openPage));
       
-      console.log(media);
-      //const Template = new PhotographerCard(photographer)
-     // this.$photographersSection.appendChild(Template.createPhotographerCard())
 
     });
-
-
   }
-
 }
 
 const app = new App()
 app.main()
-app.photographer()
+
+// function openPage () {
+//   var str = "photographer.html";
+//   var url = new URL(str);
+//   var search_params = new URLSearchParams(url.search); 
+//   if(search_params.has('id')) {
+//     var name = search_params.get('id');
+//     console.log(name)}
+// }
+

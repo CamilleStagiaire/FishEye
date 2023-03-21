@@ -1,7 +1,5 @@
 class Media {
     constructor(data) {
-
-       
         this._id = data.id
         this._photographerId = data.photographerId
         this._title = data.title
@@ -9,8 +7,6 @@ class Media {
         this._likes = data.likes
         this._date = data.date
         this._pricet = data.price
-
-        console.log(data)
     }
 
     
@@ -40,9 +36,7 @@ class Media {
 
     get pricet() {
         return this._price
-    }
-
-    
+    }    
 }
 
 

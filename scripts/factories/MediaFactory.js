@@ -17,14 +17,14 @@
 //   return { name, picture, getUserCardDOM };
 // }
 
-class PhotographersFactory {
-    constructor(data, type) {
-        if (type === 'photographerApi') {
-            return new Photographer(data)
-        } else if (type === 'mediaApi') {
-            return new Media(data)
-        } else {
-            throw 'Unknown format type'
-        }
-    }
-}
+// class PhotographersFactory {
+//     constructor(data, type) {
+//         if (type === 'photographerApi') {
+//             return new Photographer(data)
+//         } else if (type === 'mediaApi') {
+//             return new Media(data)
+//         } else {
+//             throw 'Unknown format type'
+//         }
+//     }
+// }
