@@ -1,43 +1,56 @@
 class AppMedia {
   constructor() {
-   
-    this.$photographersHeader = document.querySelector('.photograph_portrait')
+    this.$photographersInfos = document.querySelector('.photograph_header_infos')
+    this.$photographersPortrait = document.querySelector('.photograph_header_portrait')
+    
     this.$photographersMedia = document.querySelector('.photograph_media')
     this.photographersApi = new PhotographerApi('/data/photographers.json')
     this.mediasApi = new MediaApi('/data/photographers.json')
   }
 
   async header() {
-    const queryString_url_id = window.location.search;
-    const urlSearchParams = new URLSearchParams(queryString_url_id);
-    const getIdPhotagrapher = parseInt(urlSearchParams.get("id"));
+    // Récupération de l'id dans l'url
+  const queryString_url_id = window.location.search;
+  const urlSearchParams = new URLSearchParams(queryString_url_id);
+  const getIdPhotagrapher = parseInt(urlSearchParams.get("id"));
 
-    const photographersData = await this.photographersApi.getPhotographers();
+  // Récupération des données du fichier photographers.json
+  const photographersData = await this.photographersApi.getPhotographers();
+  const mediasData = await this.mediasApi.getMedias(getIdPhotagrapher);
 
-    const photographer = photographersData
-      .map((photographerData) => new Photographer(photographerData))
-      .find((photographer) => photographer.id === getIdPhotagrapher);
+  // Création des instances de la classe Photographer et de la classe Media
+  const photographer = new Photographer(photographersData.find(p => p.id === getIdPhotagrapher));
+  const medias = mediasData.map(mediaData => MediaFactory.create(mediaData));
 
-    if (photographer) {
-        const Template = new PhotographerPage(photographer)
-      this.$photographersHeader.appendChild(Template.createPhotographerPortrait())
-    } else {
-      console.error('Photographer not found with id:', getIdPhotagrapher);
-    }
+  if (photographer) {
+    const template = new PhotographerPage(photographer);
+    this.$photographersInfos.appendChild(template.createPhotographerInfos());
+    this.$photographersPortrait.appendChild(template.createPhotographerPortrait());
+
+
+    const mediaCards = medias.map(media => template.createMediaCard(media));
+    mediaCards.forEach(mediaCard => this.$photographersMedia.appendChild(mediaCard));
+  } else {
+    console.error('Photographer not found with id:', photographerId);
+  }
   }
 }
 
 const appMedia = new AppMedia()
 appMedia.header()
 
-// class AppMedia {
+
+
+
+
+// class AppPhotos {
 //   constructor() {
-//     this.$mediaSection = document.querySelector('.photograph-media')
+//    this.$mediaSection = document.querySelector('.photograph_media')
 //     this.mediasApi = new MediaApi('/data/photographers.json')
 //   }
 
 //   async mainPhotos() {
-//     const mediaData = await this.mediasApi.getMedias()
+//    const mediaData = await this.mediasApi.getMedias()
 
 
 
@@ -51,12 +64,12 @@ appMedia.header()
       
 // console.log(media.photographerId);
     
-//       const Template = new PhotographerPage(media)
+//       const Template = new MediaPage(media)
 //       this.$mediaSection.appendChild(Template.createMediaCard())
 
 //     });
 //   }
 // }
-// const appMedia = new AppMedia()
-// appMedia.mainPhotos()
+// const appPhotos = new AppPhotos()
+// appPhotos.mainPhotos()
 

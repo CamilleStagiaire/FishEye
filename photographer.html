@@ -12,10 +12,11 @@
 		<header>
 			<img src="assets/images/logo.png" class="logo"/>
 		</header>
-		<main id="photograph">
+		<main id="photograph" class="photograph">
 			<div class="photograph_header">
-				<button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-				<div class="photograph_portrait"></div>
+				<div class="photograph_header_infos"></div>
+				<button class="contact_button photograph_header_button" onclick="displayModal()">Contactez-moi</button>
+				<div class="photograph_header_portrait"></div>
 			</div>
 			<div class="photograph_media"></div>
 		</main>
@@ -36,7 +37,10 @@
 			</div>
 		</div>
 
+		
 		<script src="scripts/models/Media.js"></script>
+		<script src="scripts/factories/MediaFactory.js"></script>
+
 		<script src="/scripts/pages/photographer.js"></script>
 		<script src="/scripts/utils/contactForm.js"></script>
 		<script src="scripts/api/Api.js"></script>

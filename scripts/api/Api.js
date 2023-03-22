@@ -30,14 +30,17 @@ class PhotographerApi extends Api {
 
 class MediaApi extends Api {
   /**
-     * @param {string} url
-     */
+   * @param {string} url
+   */
   constructor(url) {
     super(url);
-
   }
-  async getMedias() {
-    return await this.get('media');
+
+  async getMedias(photographeId) {
+    const response = await fetch(this._url);
+    const data = await response.json();
+    const medias = data.media.filter(media => media.photographerId === photographeId);
+    return medias;
   }
 }
 

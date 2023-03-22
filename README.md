@@ -12,6 +12,12 @@ https://github.com/CamilleStagiaire/FishEye.git
 
 * Initialisation de package.json
 
+* Redimentionner les images
+
+* Importer les datas
+
+* Afficher le contenu des pages index.html et photographeer.html
+
 
 # Compétences évaluées:
 

@@ -1,47 +1,57 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable spaced-comment */
-//Mettre le code JavaScript lié à la page photographer.html
 
 class PhotographerPage {
   constructor(photographer) {
-    this._photographer = photographer
-    // this._media = media
+    this._photographer = photographer;
+  }
 
+  createPhotographerInfos() {
+    const $wrapper = document.createElement('article');
+    $wrapper.classList.add('photographer_portrait');
+
+    const photographerInfos =
+      ` <h2 class="photographer-name">${this._photographer.name}</h2>
+     <h2 class="photographer-name">${this._photographer.tagline}</h2>
+     `;
+
+    $wrapper.innerHTML = photographerInfos;
+    return $wrapper;
   }
 
   createPhotographerPortrait() {
-    const $wrapper = document.createElement('article')
-    $wrapper.classList.add('photographer')
+    const $wrapper = document.createElement('article');
+    $wrapper.classList.add('photographer');
 
     const photographerPortrait =
-      ` <h2 class="photographer-name">${this._photographer.name}</h2>
-     <h2 class="photographer-name">${this._photographer.tagline}</h2>
-     <img
+      `<img
      alt="${this._photographer.name}"
-     src="${this._photographer.portrait}">`
+     src="${this._photographer.portrait}">
+     `;
 
-    $wrapper.innerHTML = photographerPortrait
-    return $wrapper
-
+    $wrapper.innerHTML = photographerPortrait;
+    return $wrapper;
   }
 
+  createMediaCard(media) {
+    const $wrapper = document.createElement('article');
+    $wrapper.classList.add('media');
 
-  createMediaCard() {
-    const $wrapper = document.createElement('article')
-    $wrapper.classList.add('media')
+    if (media) {
+      const mediaTitle = `
+        <h2 class="media-title">${media.title}</h2>
+        <h2 class="media-title">${media.likes}</h2>
+      `;
+      let mediaTag;
+      if (media instanceof VideoMedia) {
+        mediaTag = `<video class="media-video src="${media.url}" controls></video>`;
+      } else {
+        mediaTag = `<img alt="${media.title}" src="${media.url}">`;
+      }
+      const mediaCard = mediaTitle + mediaTag;
 
-    const mediaCard = `
-        <h2 class="media-title">${this._media.title}</h2>
-      `
-
-    $wrapper.innerHTML = mediaCard
-    return $wrapper
-
+      $wrapper.innerHTML = mediaCard;
+    } else {
+      console.error('Media is undefined');
+    }
+    return $wrapper;
   }
 }
-
-  // photographerHeaderContainer.innerHTML =
-  //           <div class='photographer_header_id'>
-  //               <h1 tabindex='0'>${name}</h1>
-  //               <p>${city}, ${country}</p>
-  //               <span>${tagline}</span>`

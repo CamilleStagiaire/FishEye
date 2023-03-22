@@ -6,6 +6,7 @@ class App {
   }
     
   async main() {
+    // Recuperation des données du fichier photographers.json
     const photographersData = await this.photographersApi.getPhotographers()
 
     photographersData

@@ -94,7 +94,22 @@ h1 {
   height: 300px;
   margin: 0 100px;
 }
-.photograph_portrait img {
+.photograph_header {
+  display: flex;
+}
+.photograph_header_infos {
+  height: 200px;
+  width: 200px;
+}
+.photograph_header_portrait {
+  height: 200px;
+  width: 200px;
+}
+.photograph_media img {
+  height: 200px;
+  width: 200px;
+}
+.photograph .media video {
   height: 200px;
   width: 200px;
 }

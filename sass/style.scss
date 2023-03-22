@@ -58,12 +58,31 @@ h1 {
     background-color: $color-background;
     height: 300px;
     margin: 0 100px;
+
+    &_header {
+        display: flex;
+
+        &_infos {
+            height: 200px;
+            width: 200px;
+        }
+
+        &_portrait {
+            height: 200px;
+            width: 200px;
+        }
+    }
     
-    &_portrait img {
+  
+
+    &_media img {
         height: 200px;
         width: 200px;
     }
-    
+.media video {
+    height: 200px;
+        width: 200px;
+} 
    
 }
 .contact_button {
@@ -137,4 +156,8 @@ form {
         align-items: self-start;
         margin-bottom: 26px;
     }
+}
+
+.photographer_portrait {
+    // mise en style des photos de portrait
 }
