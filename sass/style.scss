@@ -54,23 +54,29 @@ h1 {
 }
 
 /* pages photographes */
-.photograph-header {
+.photograph {
     background-color: $color-background;
     height: 300px;
     margin: 0 100px;
-
-    .contact_button {
-        font-size: 20px;
-        font-weight: bold;
-        color: white;
-        padding: 11px;
-        width: 170px;
-        height: 70px;
-        border: none;
-        background-color: $color-primary;
-        border-radius: 5px;
-        cursor: pointer;
+    
+    &_portrait img {
+        height: 200px;
+        width: 200px;
     }
+    
+   
+}
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: $color-primary;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* modale de contact */
@@ -104,7 +110,6 @@ h1 {
         }
     }
 }
-
 
 
 form {

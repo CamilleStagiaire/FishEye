@@ -8,8 +8,7 @@ class Media {
         this._date = data.date
         this._pricet = data.price
     }
-
-    
+ 
     get id() {
         return this._id
     }

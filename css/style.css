@@ -89,12 +89,17 @@ h1 {
 }
 
 /* pages photographes */
-.photograph-header {
+.photograph {
   background-color: #FAFAFA;
   height: 300px;
   margin: 0 100px;
 }
-.photograph-header .contact_button {
+.photograph_portrait img {
+  height: 200px;
+  width: 200px;
+}
+
+.contact_button {
   font-size: 20px;
   font-weight: bold;
   color: white;

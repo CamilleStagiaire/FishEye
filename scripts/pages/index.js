@@ -12,7 +12,7 @@ class PhotographerCard {
         <div class="photographer-portrait">
           <img
             alt="${this._photographer.name}"
-            src="${this._photographer.portrait}"
+            src="${this._photographer.portrait}">
         </div>
         <h2 class="photographer-name">${this._photographer.name}</h2>
         <h3 class="photographer-location">
