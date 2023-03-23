@@ -7,6 +7,10 @@ class Api {
     this._url = url;
   }
 
+  /**
+   * @param {string} type 
+   * @returns {Promise}
+   */
   async get(type) {
     return fetch(this._url)
       .then((res) => res.json())
@@ -17,12 +21,15 @@ class Api {
 
 class PhotographerApi extends Api {
   /**
-     * @param {string} url
-     */
+   * @param {string} url
+   */
   constructor(url) {
     super(url);
 
   }
+  /**
+   * @returns {Promise}
+   */
   async getPhotographers() {
     return await this.get('photographers');
   }
@@ -36,6 +43,10 @@ class MediaApi extends Api {
     super(url);
   }
 
+  /**
+   * @param {number} photographeId 
+   * @returns {Promise}
+   */
   async getMedias(photographeId) {
     const response = await fetch(this._url);
     const data = await response.json();

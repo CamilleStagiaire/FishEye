@@ -1,4 +1,7 @@
 class Photographer {
+    /**
+     * @param {Object} data 
+     */
     constructor(data) {
         this._name = data.name
         this._id = data.id
@@ -7,8 +10,6 @@ class Photographer {
         this._tagline = data.tagline
         this._price = data.price
         this._portrait = data.portrait
-      
-        
     }
 
     get name() {
@@ -38,6 +39,4 @@ class Photographer {
     get portrait() {
         return `/assets/thumbnail/Portraits/${this._portrait}`
     }
-
-    
 }

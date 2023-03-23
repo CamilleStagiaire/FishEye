@@ -1,8 +1,15 @@
 class PhotographerCard {
+  /**
+   * @param {Photographer} photographer 
+   */
   constructor(photographer) {
     this._photographer = photographer
   }
 
+  /**
+   * Création de l'article contenant les cartes des photographes
+   * @returns {HTMLElement}
+   */
   createPhotographerCard() {
     const $wrapper = document.createElement('article')
     $wrapper.classList.add('photographer')

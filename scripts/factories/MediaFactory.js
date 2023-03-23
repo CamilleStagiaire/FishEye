@@ -1,4 +1,8 @@
 class MediaFactory {
+    /**
+     * @param {Object} data 
+     * @returns {ImageMedia|VideoMedia} 
+     */
     static create(data) {
         if (data.image) {
             return new ImageMedia(data);

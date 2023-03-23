@@ -179,4 +179,15 @@ form .form {
   margin-bottom: 26px;
 }
 
+.photograph_media {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 200px;
+  justify-content: space-between;
+}
+
+.media {
+  gap: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */
