@@ -3,6 +3,7 @@ class AppMedia {
     this.$photographersInfos = document.querySelector('.photograph_header_infos')
     this.$photographersPortrait = document.querySelector('.photograph_header_portrait')
     this.$photographersHeader = document.querySelector('.photograph_header')
+    this.$photographersDropdown = document.querySelector('.dropdown')
     this.$photographersMedia = document.querySelector('.photograph_media')
     this.photographersApi = new PhotographerApi('/data/photographers.json')
     this.mediasApi = new MediaApi('/data/photographers.json')
@@ -36,7 +37,7 @@ class AppMedia {
       filterDropdown.onChangeFilter();
 
       // Ajout du filtre  dans la page
-      this.$photographersHeader.appendChild(filterDropdown.$wrapper);
+      this.$photographersDropdown.appendChild(filterDropdown.$wrapper);
 
       // Création et insertion des cartes de médias
       const mediaCards = medias.map(media => template.createMediaCard(media));

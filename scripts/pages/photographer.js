@@ -1,3 +1,5 @@
+
+
 class PhotographerPage {
   /**
    * @param {Photographer} photographer 
@@ -52,25 +54,34 @@ class PhotographerPage {
 
     if (media) {
       const mediaTitle = `
-      <h2 class="media-title">${media.title}</h2>
-      <h2 class="media-title">${media.likes}</h2>
-      <h2 class="media-title">${media.date}</h2>
+      <div class="media_text">
+      <p class="media-title">${media.title}</p>
+      <p class="media-title">${media.likes}</p>
+      <p class="media-title">${media.date}</p>
+      </div>
       `;
 
       // Vérification du média
       let mediaTag;
       if (media instanceof VideoMedia) {
-        mediaTag = `<video class="media-video" src="${media.url}" controls></video>`;
+        mediaTag = `<div class="media_img"><video class="media-video" src="${media.url}" controls></video></div>`;
       } else {
-        mediaTag = `<img alt="${media.title}" src="${media.url}">`;
+        mediaTag = `<div class="media_img"><img alt="${media.title}" src="${media.url}"></div>`;
       }
 
-      const mediaCard = mediaTitle + mediaTag;
+      const mediaCard =mediaTag + mediaTitle ;
 
       $wrapper.innerHTML = mediaCard;
+
+      $wrapper.addEventListener('click', () => {
+        new Lightbox(media.url);
+      });
     } else {
       console.error('Media is undefined');
     }
+
     return $wrapper;
   }
+  
+
 }

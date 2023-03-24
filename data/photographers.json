@@ -7,7 +7,7 @@
 			"country": "UK",
 			"tagline": "Voir le beau dans le quotidien",
 			"price": 400,
-			"portrait": "MimiKeel.jpg"
+			"portrait": "MimiKeel.png"
 		},
 		{
 			"name": "Ellie-Rose Wilkens",
@@ -16,7 +16,7 @@
 			"country": "France",
 			"tagline": "Capturer des compositions complexes",
 			"price": 250,
-			"portrait": "EllieRoseWilkens.jpg"
+			"portrait": "EllieRoseWilkens.png"
 		},
 		{
 			"name": "Tracy Galindo",
@@ -25,7 +25,7 @@
 			"country": "Canada",
 			"tagline": "Photographe freelance",
 			"price": 500,
-			"portrait": "TracyGalindo.jpg"
+			"portrait": "TracyGalindo.png"
 		},
 		{
 			"name": "Nabeel Bradford",
@@ -34,7 +34,7 @@
 			"country": "Mexico",
 			"tagline": "Toujours aller de l'avant",
 			"price": 350,
-			"portrait": "NabeelBradford.jpg"
+			"portrait": "NabeelBradford.png"
 		},
 		{
 			"name": "Rhode Dubois",
@@ -43,7 +43,7 @@
 			"country": "Spain",
 			"tagline": "Je crée des souvenirs",
 			"price": 275,
-			"portrait": "RhodeDubois.jpg"
+			"portrait": "RhodeDubois.png"
 		},
 		{
 			"name": "Marcel Nikolic",
@@ -52,7 +52,7 @@
 			"country": "Germany",
 			"tagline": "Toujours à la recherche de LA photo",
 			"price": 300,
-			"portrait": "MarcelNikolic.jpg"
+			"portrait": "MarcelNikolic.png"
 		}
 	],
 	"media": [
@@ -229,6 +229,15 @@
 			"price": 70
 		},
 		{
+			"id": 593834784,
+			"photographerId": 925,
+			"title": "Nage papillon",
+			"image": "Sport_Butterfly.jpg",
+			"likes": 50,
+			"date": "2017-04-13",
+			"price": 60
+		},
+		{
 			"id": 394583434,
 			"photographerId": 527,
 			"title": "Rocky mountains from the air",
@@ -308,6 +317,15 @@
 			"likes": 25,
 			"date": "2019-01-02",
 			"price": 45
+		},
+		{
+			"id": 525834235,
+			"photographerId": 527,
+			"title": "Travel on the road",
+			"image": "Travel_On_the_Road.jpg",
+			"likes": 30,
+			"date": "2019-02-02",
+			"price": 50
 		},
 
 		{
@@ -441,7 +459,7 @@
 			"id": 235234343,
 			"photographerId": 195,
 			"title": "Adventure Door, India",
-			"image": "Travel_Adventure_Door.jpg",
+			"image": "Travel _Adventure_Door.jpg",
 			"likes": 63,
 			"date": "2019-06-26",
 			"price": 60
@@ -553,15 +571,6 @@
 			"likes": 52,
 			"date": "2018-05-03",
 			"price": 75
-		},
-		{
-			"id": 939234243,
-			"photographerId": 930,
-			"title": "Water on Modern Building",
-			"image": "Architecture_Water_on_Modern.jpg",
-			"likes": 55,
-			"date": "2018-05-10",
-			"price": 72
 		},
 		{
 			"id": 222959233,
