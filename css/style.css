@@ -122,31 +122,22 @@ h1 {
 }
 
 /* modale de contact */
-.contact {
-  display: none;
-}
-.contact .modal {
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 70%;
+  height: 70%;
+  background-color: rgb(255, 255, 255);
+  z-index: 100;
   border-radius: 5px;
   background-color: #DB8876;
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 35px;
   margin: auto;
-}
-.contact .modal header {
-  justify-content: space-between;
-  width: 100%;
-}
-.contact .modal header img {
-  cursor: pointer;
-}
-.contact .modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
 }
 
 form {
@@ -171,6 +162,16 @@ form .form {
   width: 100%;
   align-items: self-start;
   margin-bottom: 26px;
+}
+
+.modal_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  z-index: 99;
 }
 
 .photograph_media {

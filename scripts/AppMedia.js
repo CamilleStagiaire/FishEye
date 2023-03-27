@@ -39,6 +39,21 @@ class AppMedia {
       // Ajout du filtre  dans la page
       this.$photographersDropdown.appendChild(filterDropdown.$wrapper);
 
+    
+  const modal = new FormModal();
+const contactButton = document.querySelector('.contact_button');
+contactButton.addEventListener('click', () => {
+  modal.render();
+  this.$photographersPortrait.appendChild(modal.$wrapper);
+
+  const closeButton = document.querySelector('.close');
+  closeButton.addEventListener('click', () => {
+    console.log('rr');
+    modal.onClose();
+  });
+});
+
+
       // Création et insertion des cartes de médias
       const mediaCards = medias.map(media => template.createMediaCard(media));
       mediaCards.forEach(mediaCard => this.$photographersMedia.appendChild(mediaCard));

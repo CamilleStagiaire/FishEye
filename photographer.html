@@ -12,6 +12,7 @@
 		<title>Fisheye - Photographe</title>
 	</head>
 	<body>
+		<div class="content">
 		<header>
 			<img src="assets/images/logo.png" class="logo"/>
 		</header>
@@ -19,7 +20,7 @@
 			<div class="photograph">
 				<div class="photograph_header">
 					<div class="photograph_header_infos"></div>
-					<button class="contact_button photograph_header_button" onclick="displayModal()">Contactez-moi</button>
+					<button class="contact_button photograph_header_button">Contactez-moi</button>
 					<div class="photograph_header_portrait"></div>
 				</div>
 				<div class="dropdown"></div>
@@ -30,23 +31,10 @@
 
 		</main>
 
-		<div id="contact_modal" class="contact">
-			<div class="modal">
-				<header>
-					<h2>Contactez-moi</h2>
-					<img src="assets/icons/close.svg" onclick="closeModal()"/>
-				</header>
-				<form>
-					<div class="form">
-						<label>Prénom</label>
-						<input/>
-					</div>
-					<button class="contact_button">Envoyer</button>
-				</form>
-			</div>
 		</div>
+		
 
-
+<script src="scripts/utils/ContactForm.js"></script>
 <script src="scripts/utils/Lightbox.js" type="module"></script>
 <script src="scripts/api/Api.js"></script>
 <script src="scripts/models/Media.js"></script>
@@ -56,6 +44,6 @@
 <script src="scripts/pages/FilterDropdown.js"></script>
 <script src="scripts/models/Photographer.js"></script>
 <script src="scripts/pages/photographer.js"></script>
-<script src="scripts/utils/contactForm.js"></script>
+
 	</body>
 </html>

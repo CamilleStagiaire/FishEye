@@ -57,6 +57,7 @@ class PhotographerPage {
       <div class="media_text">
       <p class="media_title">${media.title}</p>
       <p class="media_likes">${media.likes}</p>
+      <i class="fa-regular fa-heart"></i>
       </div>
       `;
 

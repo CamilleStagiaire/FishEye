@@ -95,39 +95,26 @@ h1 {
 }
 
 /* modale de contact */
-.contact {
-    display: none;
-
-    .modal {
-        border-radius: 5px;
-        background-color: $color-modal;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding: 35px;
-        margin: auto;
-
-        header {
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 70%;
+    height: 70%;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 100;
+    border-radius: 5px;
+            background-color: $color-modal;
+          //  width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: space-between;
-            width: 100%;
-
-            img {
-                cursor: pointer;
-            }
-
-            h2 {
-                font-size: 64px;
-                font-weight: normal;
-                text-align: center;
-            }
-        }
-    }
-}
-
-
-form {
+            padding: 35px;
+            margin: auto;
+            
+  }
+  form {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -153,6 +140,88 @@ form {
         margin-bottom: 26px;
     }
 }
+
+
+
+  .modal_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 99;
+  }
+
+  .content{
+    //display: none;
+   // position: fixed;
+    //z-index: 1;
+   // left: 0;
+   // top: 0;
+   // height: 100%;
+   // width: 100%;
+   // overflow: auto;
+    //background-color: rgba(26, 39, 156, 0.4);
+  }
+  
+//   .modal form {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     background-color: white;
+//     padding: 2rem;
+//     border-radius: 0.5rem;
+//     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+//   }
+  
+//   .modal form label {
+//     display: block;
+//     margin-bottom: 1rem;
+//   }
+  
+//   .modal form input[type="text"] {
+//     display: block;
+//     width: 100%;
+//     padding: 0.5rem;
+//     margin-bottom: 1rem;
+//     border-radius: 0.25rem;
+//     border: 1px solid #ccc;
+//   }
+
+//   .contact {
+//     display: none;
+
+//     .modal {
+//         border-radius: 5px;
+//         background-color: $color-modal;
+//         width: 50%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: space-between;
+//         padding: 35px;
+//         margin: auto;
+
+//         header {
+//             justify-content: space-between;
+//             width: 100%;
+
+//             img {
+//                 cursor: pointer;
+//             }
+
+//             h2 {
+//                 font-size: 64px;
+//                 font-weight: normal;
+//                 text-align: center;
+//             }
+//         }
+//     }
+// }
+
+
 
 .photographer_portrait {
     // mise en style des photos de portrait
