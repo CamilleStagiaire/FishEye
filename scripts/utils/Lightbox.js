@@ -1,11 +1,8 @@
 class Lightbox {
 
-    /**
-     * Initialise la lightbox
-     */
+    //Initialise la lightbox
     static init() {
-        const links = document.querySelectorAll('img[src$=".jpg"], img[src$=".jpeg"]');
-
+        const links = document.querySelectorAll('.photograph_media>.media img');
         links.forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
@@ -67,11 +64,14 @@ class Lightbox {
         return dom;
     }
 
-   //Ferme la lightbox
+    //Ferme la lightbox avec un délai de 500ms
     close() {
         const element = document.querySelector('.lightbox');
         if (element) {
-            element.parentNode.removeChild(element);
+            element.classList.add('fadeOut');
+            setTimeout(() => {
+                element.parentNode.removeChild(element);
+            }, 500);
         }
     }
 
@@ -82,33 +82,40 @@ class Lightbox {
         //récupère l'attribut l'image courante
         const currentSrc = currentImage.getAttribute('src');
         // Récupère toutes les images de la page dans un tableau
-        const images = Array.from(document.querySelectorAll('img[src$=".jpg"], img[src$=".jpeg"]'));
+        const images = Array.from(document.querySelectorAll('.photograph_media>.media img'));
         // Récupère l'index de l'image courante dans le tableau images
         const currentIndex = images.findIndex(image => image.getAttribute('src') === currentSrc);
-        // Calcule l'index de l'image suivante à afficher
-        const nextIndex = (currentIndex + 1) % images.length;
-        // Récupère l'image suivante à afficher
-        const nextImage = images[nextIndex];
-        // Récupère l'attribut src de l'image suivante
-        const nextSrc = nextImage.getAttribute('src');
-        // Change l'attribut de l'image courante pour afficher l'image suivante
-        currentImage.setAttribute('src', nextSrc);
+
+        if (currentIndex !== 8) {
+            // Calcule l'index de l'image suivante à afficher
+            const nextIndex = (currentIndex + 1) % images.length;
+            // Récupère l'image suivante à afficher
+            const nextImage = images[nextIndex];
+            // Récupère l'attribut src de l'image suivante
+            const nextSrc = nextImage.getAttribute('src');
+            // Change l'attribut de l'image courante pour afficher l'image suivante avec un délai de 500ms
+            setTimeout(() => {
+                currentImage.setAttribute('src', nextSrc);
+            }, 500);
+        }
     }
 
     //Affiche l'image précédente dans la lightbox
     showPrev() {
         const currentImage = document.querySelector('.lightbox__container img');
         const currentSrc = currentImage.getAttribute('src');
-        const images = Array.from(document.querySelectorAll('img[src$=".jpg"], img[src$=".jpeg"]'));
+        const images = Array.from(document.querySelectorAll('.photograph_media>.media img'));
         const currentIndex = images.findIndex(image => image.getAttribute('src') === currentSrc);
-        const prevIndex = (currentIndex - 1 + images.length) % images.length;
-        const prevImage = images[prevIndex];
-        const prevSrc = prevImage.getAttribute('src');
-        currentImage.setAttribute('src', prevSrc);
-    }
+
+        if (currentIndex !== 0) {
+            const prevIndex = (currentIndex - 1 + images.length) % images.length;
+            const prevImage = images[prevIndex];
+            const prevSrc = prevImage.getAttribute('src');
+            setTimeout(() => {
+                currentImage.setAttribute('src', prevSrc);
+            }, 500);
+        }
+    }  
 }
 window.Lightbox = Lightbox;
 Lightbox.init()
-
- // Récupère uniquement les images de la classe ImageMedia
- // const imageMedias = medias.filter(media => media instanceof ImageMedia);

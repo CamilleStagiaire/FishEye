@@ -18,6 +18,10 @@ https://github.com/CamilleStagiaire/FishEye.git
 
 * Afficher le contenu des pages index.html et photographeer.html
 
+* Filtrer les médias par titre, date et popularité
+
+* Afficher la lightbox
+
 
 # Compétences évaluées:
 

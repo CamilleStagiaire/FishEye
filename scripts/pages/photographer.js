@@ -17,8 +17,8 @@ class PhotographerPage {
     $wrapper.classList.add('photographer_portrait');
 
     const photographerInfos =
-      ` <h2 class="photographer-name">${this._photographer.name}</h2>
-     <h2 class="photographer-name">${this._photographer.tagline}</h2>
+      ` <h2 class="photographer_name">${this._photographer.name}</h2>
+     <p class="photographer_tagline">${this._photographer.tagline}</p>
      `;
 
     $wrapper.innerHTML = photographerInfos;
@@ -55,16 +55,15 @@ class PhotographerPage {
     if (media) {
       const mediaTitle = `
       <div class="media_text">
-      <p class="media-title">${media.title}</p>
-      <p class="media-title">${media.likes}</p>
-      <p class="media-title">${media.date}</p>
+      <p class="media_title">${media.title}</p>
+      <p class="media_likes">${media.likes}</p>
       </div>
       `;
 
       // Vérification du média
       let mediaTag;
       if (media instanceof VideoMedia) {
-        mediaTag = `<div class="media_img"><video class="media-video" src="${media.url}" controls></video></div>`;
+        mediaTag = `<div class="media_img"><video src="${media.url}" controls></video></div>`;
       } else {
         mediaTag = `<div class="media_img"><img alt="${media.title}" src="${media.url}"></div>`;
       }
