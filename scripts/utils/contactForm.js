@@ -45,7 +45,9 @@ class FormModal {
           valid = false;
         }
   
-        if (valid) {
+        if (!valid) {
+         
+        } else {
           console.log("votre prénom : "+firstNameInputValue);
           
           this.$modalWrapper.classList.remove('modal');
@@ -102,10 +104,9 @@ class FormModal {
 
 
   onClose() {
-    this.$modalWrapper.classList.remove('modal');
-    this.$modalWrapper.innerHTML = '';
-    const background = document.querySelector('.modal_background')
-    background.remove()
+    this.$modalWrapper.style.display = "none";
+    const background = document.querySelector('.modal_background');
+    background.style.display = "none";
     }
     
 

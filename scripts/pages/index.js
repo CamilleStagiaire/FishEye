@@ -16,7 +16,7 @@ class PhotographerCard {
 
     const photographerCard = `
       <a href="./photographer.html?id=${this._photographer.id}">
-        <div class="photographer_portrait">
+        <div class="photographer_photo">
           <img
             alt="${this._photographer.name}"
             src="${this._photographer.portrait}">

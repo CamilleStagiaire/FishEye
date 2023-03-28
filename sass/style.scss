@@ -5,79 +5,116 @@
 body {
     font-family: $font-text;
 }
+.logo {
+    height: 50px;
+    margin-top: 35px;
+}
 
-header {
+// bannière page d'accueil
+.banner {
+    margin-left: 100px;
     display: flex;
-    //flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 150px;
 
-    .logo {
-        height: 50px;
-        margin-left: 100px;
+    h1 {
+        color: $color-primary;
+        font-size: 2em;
+        margin-right: 100px;
     }
-}
-
-/* page d'accueil */
-h1 {
-    color: $color-primary;
-    font-size: 2em;
-    margin-right: 100px;
-}
-
-.photographer_section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 150px 0px;
-    margin-top: 100px;
-
-    article {
-        width: 30%;
-        //justify-self: center;
+     &_photographer {
+        margin-top: 20px;
+        margin-bottom: 50px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        flex-direction: column;
+        margin-left: 50px;
 
-        h2 {
-            color: $color-secondary;
-            font-size: 36px;
+        &_icon {
+            margin-right: 30px;
         }
+     }
+}
 
+// page d'accueil
+.photographer {
+    width: 30%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+
+    a {
+        text-decoration: none;
+    }
+    &_section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        // gap: 150px 0px;
+        margin-top: 70px;
+    }
+    &_name {
+        color: $color-secondary;
+        font-size: 36px;
+        margin-top: 10px;
+    }
+    &_location{
+        color: $color-primary;
+        font-size: 13px;
+    }
+    &_tagline{
+        font-size: 10px;
+    }
+    &_price{
+        color: #757575;
+        font-size: 9px;
+    }
+    &_photo {
+        height: 200px;
+        width: 200px;
+        margin: auto;
        
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+        }
     }
 }
 
 /* pages photographes */
-#photograph {
-    display: flex;
-    flex-direction: column;
-}
-
 .photograph {
     display: flex;
     flex-direction: column;
-    background-color: $color-background;
-   // height: 300px;
     margin: 0 100px;
 
-
     &_header {
+        background-color: $color-background;
         display: flex;
-
-        &_infos {
-            height: 200px;
-            width: 200px;
-        }
-
-        &_portrait {
-            height: 200px;
-            width: 200px;
-        }
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
     }
 
+    &_infos {
+        &_name {
+            font-size: 64px;
+            color: $color-secondary;
+        }
+        &_location {
+            font-size: 24px;
+            color: $color-primary;
+            margin-bottom: 18px;
+        }
+
+        &_tagline {
+            font-size: 18px;
+        }
+    }
 
 }
 
@@ -94,8 +131,17 @@ h1 {
     cursor: pointer;
 }
 
+.hidden {
+    display: none;
+}
+
+.contact {
+    display: none;
+}
+
 /* modale de contact */
 .modal {
+
     position: fixed;
     left: 0;
     top: 0;
@@ -104,17 +150,18 @@ h1 {
     background-color: rgba(255, 255, 255, 1);
     z-index: 100;
     border-radius: 5px;
-            background-color: $color-modal;
-          //  width: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 35px;
-            margin: auto;
-            
-  }
-  form {
+    background-color: $color-modal;
+    //  width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+
+}
+
+form {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -143,7 +190,7 @@ h1 {
 
 
 
-  .modal_background {
+.modal_background {
     position: fixed;
     top: 0;
     left: 0;
@@ -151,20 +198,29 @@ h1 {
     height: 100%;
     background-color: rgba(255, 255, 255, 1);
     z-index: 99;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-  .content{
-    //display: none;
-   // position: fixed;
-    //z-index: 1;
-   // left: 0;
-   // top: 0;
-   // height: 100%;
-   // width: 100%;
-   // overflow: auto;
-    //background-color: rgba(26, 39, 156, 0.4);
-  }
-  
+.modal_background .content {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    //     display: none;
+    //    position: fixed;
+    //     z-index: 1;
+    //    left: 0;
+    //    top: 0;
+    //    height: 100%;
+    //    width: 100%;
+    //    overflow: auto;
+    //     background-color: rgba(26, 39, 156, 0.4);
+}
+
 //   .modal form {
 //     position: absolute;
 //     top: 50%;
@@ -175,12 +231,12 @@ h1 {
 //     border-radius: 0.5rem;
 //     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 //   }
-  
+
 //   .modal form label {
 //     display: block;
 //     margin-bottom: 1rem;
 //   }
-  
+
 //   .modal form input[type="text"] {
 //     display: block;
 //     width: 100%;
@@ -223,9 +279,7 @@ h1 {
 
 
 
-.photographer_portrait {
-    // mise en style des photos de portrait
-}
+
 
 .photograph_media {
     display: flex;
@@ -235,8 +289,8 @@ h1 {
 }
 
 .media {
-    
-    
+
+
     &_img {
         width: 350px;
         height: 300px;
@@ -244,11 +298,12 @@ h1 {
         img {
             object-fit: cover;
             height: 100%;
-    width: 100%;
+            width: 100%;
         }
     }
 }
 
+// la lightbox
 .lightbox {
     position: fixed;
     left: 0;
@@ -263,72 +318,77 @@ h1 {
     &__prev,
     &__next {
         border: none;
-        background: url(/assets/icons/arrow.svg) center center / 16px 28px no-repeat;
+        background: url(/assets/icons/arrow.svg) center center / 24px 48px no-repeat;
         width: 50px;
         height: 100%;
         position: fixed;
-        top:0;
+        top: 10%;
         right: 0;
         margin-top: -14px;
         z-index: 11;
-      
-       
+    }
+
+    &__next {
+        right: 9%;
+        left: auto;
     }
 
     &__prev {
         right: auto;
-        left: 0;
+        left: 9%;
         transform: rotate(180deg);
     }
 
     &__close {
-        
+
         position: fixed;
-        height: 30px;
-        width: 30px;
+        height: 42px;
+        width: 42px;
         border: none;
         background: url(/assets/icons/xmark-solid.svg) center center / 100% 100% no-repeat transparent;
-      //  text-indent: -3000px;
-        top: 20px;
-        right: 20px;
-        z-index: 12;   
+        top: 15%;
+        right: 9%;
+        z-index: 12;
     }
 
     &__container {
-        
-       margin: 62px 195px;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       min-height: 100vh;
 
-        img{
+        margin: 62px 195px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+
+        img {
             object-fit: cover;
             width: 1050px;
-           height: auto;
-           animation: lightboxIn .5s;
+            height: 900px;
+            animation: lightboxIn .5s;
         }
     }
 
     button {
-
-        opacity: .5;
         cursor: pointer;
         transition: opacity .3s;
-        text-indent: -3000px;
+        text-indent: -5000px;
 
         &:hover {
             opacity: 1;
         }
     }
-    
+
+    .fadeOut {
+        opacity: 0;
+    }
+
 }
 
 @keyframes lightboxIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
+    from {
+        opacity: 0;
+    }
 
-.lightbox.fadeOut {
-opacity: 0;
+    to {
+        opacity: 1;
+    }
 }

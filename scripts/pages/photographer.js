@@ -13,12 +13,16 @@ class PhotographerPage {
    * @returns {HTMLElement}
    */
   createPhotographerInfos() {
-    const $wrapper = document.createElement('article');
-    $wrapper.classList.add('photographer_portrait');
+    const $wrapper = document.createElement('div');
+    $wrapper.classList.add('photograph_infos');
 
     const photographerInfos =
-      ` <h2 class="photographer_name">${this._photographer.name}</h2>
-     <p class="photographer_tagline">${this._photographer.tagline}</p>
+      ` <h2 class="photograph_infos_name">${this._photographer.name}</h2>
+      <h3 class="photograph_infos_location">
+      <span class="photograph_infos_location_city">${this._photographer.city}</span>,
+      <span class="photograph_infos_location_country">${this._photographer.country}</span>
+    </h3>
+     <p class="photograph_tagline">${this._photographer.tagline}</p>
      `;
 
     $wrapper.innerHTML = photographerInfos;
@@ -30,8 +34,8 @@ class PhotographerPage {
    * @returns {HTMLElement}
    */
   createPhotographerPortrait() {
-    const $wrapper = document.createElement('article');
-    $wrapper.classList.add('photographer');
+    const $wrapper = document.createElement('div');
+    $wrapper.classList.add('photographer_photo');
 
     const photographerPortrait =
       `<img

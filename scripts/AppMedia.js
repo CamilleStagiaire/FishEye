@@ -7,6 +7,7 @@ class AppMedia {
     this.$photographersMedia = document.querySelector('.photograph_media')
     this.photographersApi = new PhotographerApi('/data/photographers.json')
     this.mediasApi = new MediaApi('/data/photographers.json')
+    
   }
 
   async header() {
@@ -39,19 +40,20 @@ class AppMedia {
       // Ajout du filtre  dans la page
       this.$photographersDropdown.appendChild(filterDropdown.$wrapper);
 
-    
-  const modal = new FormModal();
-const contactButton = document.querySelector('.contact_button');
-contactButton.addEventListener('click', () => {
-  modal.render();
-  this.$photographersPortrait.appendChild(modal.$wrapper);
-
-  const closeButton = document.querySelector('.close');
-  closeButton.addEventListener('click', () => {
-    console.log('rr');
-    modal.onClose();
-  });
-});
+      // formulaire de contact
+      const modal = new FormModal();
+      const contactButton = document.querySelector('.contact_button');
+      
+      contactButton.addEventListener('click', () => {
+        modal.render();
+        this.$photographersPortrait.appendChild(modal.$wrapper);
+      
+        const closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', () => {
+          console.log('rr');
+          modal.onClose();
+        });
+      });
 
 
       // Création et insertion des cartes de médias
