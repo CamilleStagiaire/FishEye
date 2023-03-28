@@ -22,6 +22,8 @@ https://github.com/CamilleStagiaire/FishEye.git
 
 * Afficher la lightbox
 
+* Gérer la modale de contact
+
 
 # Compétences évaluées:
 

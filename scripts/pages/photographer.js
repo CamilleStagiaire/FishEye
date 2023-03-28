@@ -1,5 +1,3 @@
-
-
 class PhotographerPage {
   /**
    * @param {Photographer} photographer 
@@ -86,6 +84,4 @@ class PhotographerPage {
 
     return $wrapper;
   }
-  
-
 }

@@ -42,9 +42,9 @@ class FilterDropdown {
   }
 
   onChangeFilter() {
-    this.$wrapper
-      .querySelector("form select")
-      .addEventListener("change", async (e) => {
+    const filterButtons = this.$wrapper.querySelectorAll('.filter-form_button');
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", async (e) => {
         const selectedOption = e.target.value; // Récupère la valeur sélectionnée dans le formulaire de filtrage
         switch (selectedOption) {
 
@@ -62,6 +62,7 @@ class FilterDropdown {
             break;
         }
       });
+    });
   }
 
   // Supprime tous les éléments dans la template
@@ -72,19 +73,62 @@ class FilterDropdown {
   // Rendu HTML du dropdowm
   render() {
     const filterForm = `
-        <form class="filter-form" action="#" method="POST">
-          <label for="filter-select">Filtrer par :</label>
-          <select name="filter-select" id="filter-select">
-            <option value="">Aucun filtre</option>
-            <option value="title">Titre</option>
-            <option value="date">Date</option>
-            <option value="likes">Likes</option>
-          </select>
-        </form>
-      `;
+   <div class="filter">
+   <label for="filter_label">Trier par </label>
+   <form class="filter-form" action="#" method="POST">
+     <div class="dropdown">
+       <div><button class="filter-form_button" id="likes-btn" type="button" value="likes">Popularités</button><img src="assets/images/chevron.png" class="dropdown_open"/></div>
+       <button class="filter-form_button hidden" id="title-btn" type="button" value="title">Titre</button>
+       <button class="filter-form_button hidden" id="date-btn" type="button" value="date">Date</button>
+     </div>
+   </form>
+   </div>
+    `;
 
     this.$wrapper.innerHTML = filterForm;
     this.onChangeFilter();
     this.$filterWrapper.appendChild(this.$wrapper);
+
+    const titleBtn = this.$wrapper.querySelector('#title-btn');
+    const dateBtn = this.$wrapper.querySelector('#date-btn');
+    const likesBtn = this.$wrapper.querySelector('#likes-btn');
+
+    //texte du bouton "Likes"
+    const likesBtnText = likesBtn.textContent;
+
+
+    likesBtn.addEventListener('click', () => {
+      likesBtn.textContent = likesBtnText;
+
+      if (titleBtn.classList.contains('hidden') && dateBtn.classList.contains('hidden')) {
+        console.log(likesBtnText);
+        titleBtn.classList.remove('hidden');
+        dateBtn.classList.remove('hidden');
+
+      } else {
+
+        titleBtn.classList.add('hidden');
+        dateBtn.classList.add('hidden');
+
+      }
+    });
+
+
+    titleBtn.addEventListener('click', () => {
+      //remplacement du texte du bouton "Likes" par le texte du bouton "Titre"
+      likesBtn.textContent = titleBtn.textContent;
+      titleBtn.classList.add('hidden');
+      dateBtn.classList.add('hidden');
+      likesBtn.classList.remove('hidden');
+    });
+
+    dateBtn.addEventListener('click', () => {
+      //remplacement du texte du bouton "Likes" par le texte du bouton "Date"
+      likesBtn.textContent = dateBtn.textContent;
+      titleBtn.classList.add('hidden');
+      dateBtn.classList.add('hidden');
+      likesBtn.classList.remove('hidden');
+    });
+
   }
 }

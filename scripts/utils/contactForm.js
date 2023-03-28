@@ -1,8 +1,9 @@
 class FormModal {
-  constructor() {
+  constructor(photographer) {
+    this._photographer = photographer;
     this.$wrapper = document.createElement('div');
-    this.createForm();
-    
+    this.createForm(photographer);
+ 
   }
 
   onSubmitForm() {
@@ -64,7 +65,7 @@ class FormModal {
     const form = `
       <div class="modal">
         <div class="modal_header">
-        <h2>Contactez-moi</h2>
+        <h2>Contactez-moi${this._photographer.name}</h2>
         <img src="assets/icons/close.svg" class="close"/>
         </div>
         <form action="#" method="POST">

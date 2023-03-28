@@ -41,7 +41,7 @@ class AppMedia {
       this.$photographersDropdown.appendChild(filterDropdown.$wrapper);
 
       // formulaire de contact
-      const modal = new FormModal();
+      const modal = new FormModal(photographer);
       const contactButton = document.querySelector('.contact_button');
       
       contactButton.addEventListener('click', () => {
