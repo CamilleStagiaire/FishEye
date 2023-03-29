@@ -28,7 +28,7 @@ class PhotographerPage {
   }
 
   /**
-   * Création de l'article contenant l'image du photographe
+   * Création de l'image du photographe
    * @returns {HTMLElement}
    */
   createPhotographerPortrait() {
@@ -56,11 +56,13 @@ class PhotographerPage {
 
     if (media) {
       const mediaTitle = `
-      <div class="media_text">
-      <p class="media_title">${media.title}</p>
-      <p class="media_likes">${media.likes}</p>
-      <i class="fa-regular fa-heart"></i>
-      </div>
+        <div class="media_text">
+          <p class="media_title">${media.title}</p>
+          <div class="media_likes">
+            <p>${media.likes}</p>
+            <i class="fa-solid fa-heart"></i>
+          </div>
+        </div>
       `;
 
       // Vérification du média
@@ -71,9 +73,24 @@ class PhotographerPage {
         mediaTag = `<div class="media_img"><img alt="${media.title}" src="${media.url}"></div>`;
       }
 
-      const mediaCard =mediaTag + mediaTitle ;
-
+      const mediaCard = mediaTag + mediaTitle;
       $wrapper.innerHTML = mediaCard;
+
+      // Ajouter l'événement de clic sur l'icône du cœur
+      const $likeButton = $wrapper.querySelector('.fa-heart');
+      $likeButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
+        if (!media.isLiked) { //  si le média n'a pas déjà été liké
+          media.addLike(); 
+          $wrapper.querySelector('.media_likes p').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
+          $likeButton.classList.add('fa-red-heart'); 
+        } else {
+          media.likes--;
+          media._isLiked = false;
+          $wrapper.querySelector('.media_likes p').textContent = media.likes;
+          $likeButton.classList.remove('fa-red-heart');
+        }
+      });
 
       $wrapper.addEventListener('click', () => {
         new Lightbox(media.url);

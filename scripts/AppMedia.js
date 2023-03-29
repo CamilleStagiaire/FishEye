@@ -24,6 +24,10 @@ class AppMedia {
     const photographer = new Photographer(photographersData.find(element => element.id === getIdPhotographer));
     const medias = mediasData.map(mediaData => MediaFactory.create(mediaData));
 
+    // Tri des médias par popularité
+const filterMedias = new Filter(medias);
+const filteredMedias = await filterMedias.filterByLikes();
+
     // Vérification si le photographe est trouvé
     if (photographer) {
       const template = new PhotographerPage(photographer);
@@ -33,10 +37,10 @@ class AppMedia {
       this.$photographersPortrait.appendChild(template.createPhotographerPortrait());
 
       // Création et initialisation du filtre
-      const filterDropdown = new FilterDropdown(medias);
-      filterDropdown.render();
-      filterDropdown.onChangeFilter();
-
+  const filterDropdown = new FilterDropdown(filteredMedias); // utilise les médias triés par popularité
+  filterDropdown.render();
+  filterDropdown.onChangeFilter()
+  
       // Ajout du filtre  dans la page
       this.$photographersDropdown.appendChild(filterDropdown.$wrapper);
 

@@ -10,6 +10,7 @@ class FilterDropdown {
   }
 
   /**
+   * 
    * @param {string} filterBy 
    */
   async filterMedias(filterBy) {

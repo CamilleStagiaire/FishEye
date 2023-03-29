@@ -1,4 +1,3 @@
-
 class Media {
   /**
    * @param {Object} data 
@@ -12,6 +11,12 @@ class Media {
     this._likes = data.likes;
     this._date = data.date;
     this._price = data.price;
+    this._isLiked = false;
+  }
+
+  addLike() {
+    this.likes++;
+    this._isLiked = true;
   }
 
   get id() {
@@ -34,12 +39,19 @@ class Media {
     return this._likes;
   }
 
+  set likes(value) {
+    this._likes = value;
+  }
+
   get date() {
     return this._date;
   }
 
   get price() {
     return this._price;
+  }
+  get isLiked() {
+    return this._isLiked;
   }
 }
 

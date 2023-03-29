@@ -24,6 +24,12 @@ https://github.com/CamilleStagiaire/FishEye.git
 
 * Gérer la modale de contact
 
+* Gérer les likes (incrémentation et remplissage + encart en bas de page)
+
+* Intégrer les maquettes en CSS et les Media queries
+
+* Gérer l'accessibilité du site (lecteur d'écran et clavier)
+
 
 # Compétences évaluées:
 
