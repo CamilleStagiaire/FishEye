@@ -7,7 +7,7 @@ class AppMedia {
     this.$photographersMedia = document.querySelector('.photograph_media')
     this.photographersApi = new PhotographerApi('/data/photographers.json')
     this.mediasApi = new MediaApi('/data/photographers.json')
-    
+
   }
 
   async header() {
@@ -22,11 +22,16 @@ class AppMedia {
 
     // Création des instances de la classe Photographer et de la classe Media
     const photographer = new Photographer(photographersData.find(element => element.id === getIdPhotographer));
-    const medias = mediasData.map(mediaData => MediaFactory.create(mediaData));
+    const medias = mediasData.map(mediaData => {
+      const media = MediaFactory.create(mediaData);
+      photographer.addMedia(media);
+      return media;
+    });
+
 
     // Tri des médias par popularité
-const filterMedias = new Filter(medias);
-const filteredMedias = await filterMedias.filterByLikes();
+    const filterMedias = new Filter(medias);
+    const filteredMedias = await filterMedias.filterByLikes();
 
     // Vérification si le photographe est trouvé
     if (photographer) {
@@ -36,29 +41,32 @@ const filteredMedias = await filterMedias.filterByLikes();
       this.$photographersInfos.appendChild(template.createPhotographerInfos());
       this.$photographersPortrait.appendChild(template.createPhotographerPortrait());
 
+      // Création de l'encart pour le total des likes
+      const likesCounter = template.createLikesCounter();
+      this.$photographersMedia.appendChild(likesCounter);
+
       // Création et initialisation du filtre
-  const filterDropdown = new FilterDropdown(filteredMedias); // utilise les médias triés par popularité
-  filterDropdown.render();
-  filterDropdown.onChangeFilter()
-  
+      const filterDropdown = new FilterDropdown(filteredMedias); // utilise les médias triés par popularité
+      filterDropdown.render();
+      filterDropdown.onChangeFilter()
+
       // Ajout du filtre  dans la page
       this.$photographersDropdown.appendChild(filterDropdown.$wrapper);
 
       // formulaire de contact
       const modal = new FormModal(photographer);
       const contactButton = document.querySelector('.contact_button');
-      
+
       contactButton.addEventListener('click', () => {
         modal.render();
         this.$photographersPortrait.appendChild(modal.$wrapper);
-      
+
         const closeButton = document.querySelector('.close');
         closeButton.addEventListener('click', () => {
           console.log('rr');
           modal.onClose();
         });
       });
-
 
       // Création et insertion des cartes de médias
       const mediaCards = medias.map(media => template.createMediaCard(media));

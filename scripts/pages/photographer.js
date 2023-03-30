@@ -45,6 +45,29 @@ class PhotographerPage {
     return $wrapper;
   }
 
+/**
+ * Création de l'encart affichant le nombre total de likes du photographe
+ * @returns {HTMLElement}
+ */
+createLikesCounter() {
+  const $likesCounter = document.createElement("div");
+  $likesCounter.classList.add("likes_counter");
+
+  const totalLikes = this._photographer.getTotalLikes();
+  const likesText = `<span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span>`;
+  $likesCounter.innerHTML = likesText;
+
+  return $likesCounter;
+}
+
+// mise à jour des likes en temps réel
+updateLikesCounter() {
+  const $likesCounter = document.querySelector('.likes_counter');
+  const totalLikes = this._photographer.getTotalLikes();
+  const likesText = `<span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span>`;
+  $likesCounter.innerHTML = likesText;
+}
+
   /**
    *  Création de l'article contenant le media (image ou vidéo)
    * @param {Media} media
@@ -90,6 +113,7 @@ class PhotographerPage {
           $wrapper.querySelector('.media_likes p').textContent = media.likes;
           $likeButton.classList.remove('fa-red-heart');
         }
+        this.updateLikesCounter(); // Mise à jour le total des likes du photographe
       });
 
       $wrapper.addEventListener('click', () => {

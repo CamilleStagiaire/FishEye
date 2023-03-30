@@ -167,6 +167,7 @@ body {
     color: $color-primary;
     transition: color 0.5s linear;
   }
+
 //filtres
 .filter {
     display: flex;
@@ -230,8 +231,28 @@ body {
     }
 }
   
+//counter
+ .likes_counter {
+    display: flex;
+    justify-content: flex-start;
+    width: 376px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  background-color:#DB8876;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
 
- 
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likes_counter i {
+  margin-left: 5px;
+  color:black
+}
 
 .contact_button {
     font-size: 20px;

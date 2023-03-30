@@ -10,6 +10,7 @@ class Photographer {
         this._tagline = data.tagline
         this._price = data.price
         this._portrait = data.portrait
+        this._media = [];
     }
 
     get name() {
@@ -38,5 +39,31 @@ class Photographer {
 
     get portrait() {
         return `/assets/thumbnail/Portraits/${this._portrait}`
+    }
+
+    get media() {
+        return this._media;
+    }
+
+    /**
+    * Renvoie le nombre total de likes du photographe
+    * @returns {number}
+    */
+    getTotalLikes() {
+        let totalLikes = 0;
+
+        this.media.forEach((media) => {
+            totalLikes += media.likes;
+        });
+
+        return totalLikes;
+    }
+
+    /**
+     * initialise la liste des médias du photographe 
+     * @param {Media} media 
+     */
+    addMedia(media) {
+        this._media.push(media);
     }
 }
