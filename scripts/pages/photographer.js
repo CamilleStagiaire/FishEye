@@ -50,23 +50,25 @@ class PhotographerPage {
  * @returns {HTMLElement}
  */
 createLikesCounter() {
-  const $likesCounter = document.createElement("div");
-  $likesCounter.classList.add("likes_counter");
+    const $likesCounter = document.createElement("div");
+    $likesCounter.classList.add("likes_counter");
 
-  const totalLikes = this._photographer.getTotalLikes();
-  const likesText = `<span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span>`;
-  $likesCounter.innerHTML = likesText;
+    const totalLikes = this._photographer.getTotalLikes();
+    const likesText = `<div class="likes_container"><span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
+    $likesCounter.innerHTML = likesText;
 
-  return $likesCounter;
-}
+    return $likesCounter;
+  }
 
-// mise à jour des likes en temps réel
-updateLikesCounter() {
-  const $likesCounter = document.querySelector('.likes_counter');
-  const totalLikes = this._photographer.getTotalLikes();
-  const likesText = `<span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span>`;
-  $likesCounter.innerHTML = likesText;
-}
+  /**
+   * Mise à jour de l'encart affichant le nombre total de likes du photographe
+   */
+  updateLikesCounter() {
+    const $likesCounter = document.querySelector('.likes_counter');
+    const totalLikes = this._photographer.getTotalLikes();
+    const likesText = `<div class="likes_container"><span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
+    $likesCounter.innerHTML = likesText;
+  }
 
   /**
    *  Création de l'article contenant le media (image ou vidéo)
@@ -91,7 +93,7 @@ updateLikesCounter() {
       // Vérification du média
       let mediaTag;
       if (media instanceof VideoMedia) {
-        mediaTag = `<div class="media_img"><video src="${media.url}" controls></video></div>`;
+        mediaTag = `<div class="media_img"><video src="${media.url}" controls><track></video></div>`;
       } else {
         mediaTag = `<div class="media_img"><img alt="${media.title}" src="${media.url}"></div>`;
       }
@@ -99,11 +101,11 @@ updateLikesCounter() {
       const mediaCard = mediaTag + mediaTitle;
       $wrapper.innerHTML = mediaCard;
 
-      // Ajouter l'événement de clic sur l'icône du cœur
+      // icône du cœur
       const $likeButton = $wrapper.querySelector('.fa-heart');
       $likeButton.addEventListener('click', (e) => {
         e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
-        if (!media.isLiked) { //  si le média n'a pas déjà été liké
+        if (!media.isLiked) {
           media.addLike(); 
           $wrapper.querySelector('.media_likes p').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
           $likeButton.classList.add('fa-red-heart'); 
@@ -125,4 +127,5 @@ updateLikesCounter() {
 
     return $wrapper;
   }
+  
 }

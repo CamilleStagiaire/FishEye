@@ -8,9 +8,9 @@ class Filter {
 
   /**
    * Trie les médias par ordre alphabétique du titre
-   * @returns {Promise<Media[]>}
+   * @returns {Media[]}
    */
-  async filterByTitle() {
+  filterByTitle() {
     const filteredMedias = this.medias.sort((a, b) => {
       return a.title.localeCompare(b.title);
     });
@@ -19,9 +19,9 @@ class Filter {
 
   /**
    * Trie les médias par ordre chronologique (date croissante)
-   * @returns {Promise<Media[]>}
+   * @returns {Media[]}
    */
-  async filterByDate() {
+  filterByDate() {
     const filteredMedias = this.medias.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
@@ -30,9 +30,9 @@ class Filter {
 
   /**
    * Trie les médias par nombre de likes décroissant
-   * @returns {Promise<Media[]>}
+   * @returns {Media[]}
    */
-  async filterByLikes() {
+  filterByLikes() {
     const filteredMedias = this.medias.sort((a, b) => {
       return b.likes - a.likes;
     });

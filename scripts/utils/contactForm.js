@@ -68,7 +68,7 @@ class FormModal {
     const form = `
       <div class="modal">
         <div class="modal_header">
-        <h2>Contactez-moi${this._photographer.name}</h2>
+        <h2>Contactez-moi<br>${this._photographer.name}</h2>
         <img src="assets/icons/close.svg" class="close"/>
         </div>
         <form action="#" method="POST">
@@ -88,7 +88,7 @@ class FormModal {
             <label class="form-label" for="message">Votre message</label>
             <input id="message" name="message" type="text">
           </div>
-          <input class="btn-submit button" type="submit" value="Envoyer">
+          <input class="contact_button" type="submit" value="Envoyer">
         </form>
       </div>
     `;

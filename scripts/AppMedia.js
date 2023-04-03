@@ -5,9 +5,9 @@ class AppMedia {
     this.$photographersHeader = document.querySelector('.photograph_header')
     this.$photographersDropdown = document.querySelector('.dropdown')
     this.$photographersMedia = document.querySelector('.photograph_media')
+    this.$photographersLikes = document.querySelector('.photograph_likes')
     this.photographersApi = new PhotographerApi('/data/photographers.json')
     this.mediasApi = new MediaApi('/data/photographers.json')
-
   }
 
   async header() {
@@ -28,6 +28,7 @@ class AppMedia {
       return media;
     });
 
+ 
 
     // Tri des médias par popularité
     const filterMedias = new Filter(medias);
@@ -42,8 +43,8 @@ class AppMedia {
       this.$photographersPortrait.appendChild(template.createPhotographerPortrait());
 
       // Création de l'encart pour le total des likes
-      const likesCounter = template.createLikesCounter();
-      this.$photographersMedia.appendChild(likesCounter);
+      const likesCounter = template.createLikesCounter(filteredMedias);
+      this.$photographersLikes.appendChild(likesCounter);
 
       // Création et initialisation du filtre
       const filterDropdown = new FilterDropdown(filteredMedias); // utilise les médias triés par popularité
@@ -63,7 +64,6 @@ class AppMedia {
 
         const closeButton = document.querySelector('.close');
         closeButton.addEventListener('click', () => {
-          console.log('rr');
           modal.onClose();
         });
       });
@@ -71,10 +71,13 @@ class AppMedia {
       // Création et insertion des cartes de médias
       const mediaCards = medias.map(media => template.createMediaCard(media));
       mediaCards.forEach(mediaCard => this.$photographersMedia.appendChild(mediaCard));
+      
     } else {
       console.error('Photographer not found with id:', photographerId);
     }
   }
+
+  
 }
 
 const appMedia = new AppMedia()

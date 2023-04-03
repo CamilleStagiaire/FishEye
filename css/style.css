@@ -112,8 +112,8 @@ body {
   font-size: 9px;
 }
 .photographer_photo {
-  height: 200px;
-  width: 200px;
+  height: 160px;
+  width: 160px;
   margin: auto;
 }
 .photographer_photo img {
@@ -164,7 +164,8 @@ body {
   width: 350px;
   height: 300px;
 }
-.media_img img, .media_img video {
+.media_img img,
+.media_img video {
   object-fit: cover;
   height: 100%;
   width: 100%;
@@ -172,6 +173,9 @@ body {
 .media_text {
   display: flex;
   justify-content: space-between;
+  font-size: 24px;
+  margin-top: 10px;
+  color: #901C1C;
 }
 .media_likes {
   display: flex;
@@ -245,16 +249,20 @@ body {
   z-index: 10;
 }
 
+.hidden {
+  display: none;
+}
+
 .likes_counter {
-  display: flex;
-  justify-content: flex-start;
+  font-size: 24px;
+  height: 68px;
   width: 376px;
   position: fixed;
   bottom: 0px;
-  right: 0px;
+  right: 36px;
   background-color: #DB8876;
   padding: 10px;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -264,6 +272,12 @@ body {
 .likes_counter i {
   margin-left: 5px;
   color: black;
+}
+
+.likes_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .contact_button {
@@ -279,21 +293,13 @@ body {
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
-
-.contact {
-  display: none;
-}
-
 /* modale de contact */
 .modal {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 70%;
-  height: 70%;
+  left: 25%;
+  top: 60px;
+  width: 669px;
+  height: 900px;
   background-color: rgb(255, 255, 255);
   z-index: 100;
   border-radius: 5px;
@@ -301,9 +307,41 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 35px;
   margin: auto;
+}
+.modal form {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+.modal form label {
+  color: #312E2E;
+  font-size: 36px;
+}
+.modal form input {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+}
+.modal form .form-group {
+  width: 100%;
+}
+.modal form .contact_button {
+  width: 170px;
+}
+.modal_header {
+  font-size: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
 
 .modal_background {

@@ -1,12 +1,15 @@
 class FilterDropdown {
-  /**
+ /**
    * @param {Media[]} medias 
+   * @param {Photographer} photographer
    */
-  constructor(medias) {
-    this.medias = medias;
-    this.$wrapper = document.createElement("div");
-    this.$filterWrapper = document.querySelector(".dropdown");
-    this.$mediasWrapper = document.querySelector(".photograph_media");
+ constructor(medias, photographer) {
+  this.medias = medias;
+  this.photographer = photographer;
+  this.$wrapper = document.createElement("div");
+  this.$filterWrapper = document.querySelector(".dropdown");
+  
+  this.$mediasWrapper = document.querySelector(".photograph_media");
   }
 
   /**
@@ -35,13 +38,16 @@ class FilterDropdown {
         break;
     }
 
-    // Ajoute chaque élément filtré dans la template
-    filteredMedias.forEach((media) => {
-      const template = new PhotographerPage(media);
-      this.$mediasWrapper.appendChild(template.createMediaCard(media));
-    });
+   filteredMedias.forEach((media) => {
+  const template = new PhotographerPage(this._photographer);
+  this.$mediasWrapper.appendChild(template.createMediaCard(media));
+});
+
+//const photographerPage = new PhotographerPage(this._photographer);
+//photographerPage.createLikesCounter();
   }
 
+  
   onChangeFilter() {
     const filterButtons = this.$wrapper.querySelectorAll('.filter-form_button');
     filterButtons.forEach((button) => {
@@ -94,9 +100,11 @@ class FilterDropdown {
     const dateBtn = this.$wrapper.querySelector('#date-btn');
     const likesBtn = this.$wrapper.querySelector('#likes-btn');
 
+
+    
+
     //texte du bouton "Likes"
     const likesBtnText = likesBtn.textContent;
-
 
     likesBtn.addEventListener('click', () => {
       likesBtn.textContent = likesBtnText;
@@ -107,13 +115,10 @@ class FilterDropdown {
         dateBtn.classList.remove('hidden');
 
       } else {
-
         titleBtn.classList.add('hidden');
         dateBtn.classList.add('hidden');
-
       }
     });
-
 
     titleBtn.addEventListener('click', () => {
       //remplacement du texte du bouton "Likes" par le texte du bouton "Titre"
