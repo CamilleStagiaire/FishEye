@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<link href="css/style.css" rel="stylesheet" type="text/css"/>
 		<meta charset="utf-8">
@@ -14,16 +14,13 @@
 	<body>
 		<div class="content">
 		<header class="banner_photographer">
-		<span class="banner_photographer_icon"><a href="index.html">
-					<i class="fa-solid fa-arrow-left fa-lg"></i>
-				</a></span>
-			<img src="assets/images/logo.png" class="logo"/>
+			<a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page"/></a>
 		</header>
 		<main id="photograph">
 			<div class="photograph">
 				<div class="photograph_header">
 					<div class="photograph_header_infos"></div>
-					<button class="contact_button photograph_header_button">Contactez-moi</button>
+					<button class="contact_button photograph_header_button" role="button">Contactez-moi</button>
 					<div class="photograph_header_portrait"></div>
 				</div>
 				<div class="dropdown"></div>
@@ -37,14 +34,14 @@
 		</main>
 
 		</div>
-		
+<script src="scripts/AppMedia.js" type="module"></script>		
 
 <script src="scripts/utils/ContactForm.js"></script>
-<script src="scripts/utils/Lightbox.js" type="module"></script>
+<script src="scripts/utils/Lightbox.js"></script>
 <script src="scripts/api/Api.js"></script>
 <script src="scripts/models/Media.js"></script>
 <script src="scripts/factories/MediaFactory.js"></script>
-<script src="scripts/AppMedia.js"></script>
+
 <script src="scripts/utils/Filter.js"></script>
 <script src="scripts/pages/FilterDropdown.js"></script>
 <script src="scripts/models/Photographer.js"></script>

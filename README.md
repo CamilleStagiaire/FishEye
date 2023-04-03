@@ -7,7 +7,7 @@ https://github.com/CamilleStagiaire/FishEye.git
 * installation et configuration des modules :
 - Sass
 - Eslint
-* les modules JavaScript:
+- les modules JavaScript:
 - intégrer les instructions import et export
 
 * Initialisation de package.json

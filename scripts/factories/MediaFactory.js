@@ -1,4 +1,4 @@
-class MediaFactory {
+ class MediaFactory {
     /**
      * @param {Object} data 
      * @returns {ImageMedia|VideoMedia} 
@@ -13,5 +13,5 @@ class MediaFactory {
         }
     }
 }
-
+//export { MediaFactory };
 

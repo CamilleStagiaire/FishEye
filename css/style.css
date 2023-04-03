@@ -68,13 +68,10 @@ body {
 }
 .banner_photographer {
   margin-top: 20px;
+  margin-left: 100px;
   margin-bottom: 50px;
   display: flex;
   align-items: center;
-  margin-left: 50px;
-}
-.banner_photographer_icon {
-  margin-right: 30px;
 }
 
 .photographer {
@@ -233,6 +230,10 @@ body {
   background-color: white;
   margin-top: -26px;
 }
+.filter-form img {
+  left: 150px;
+  top: 0;
+}
 
 .dropdown {
   display: flex;
@@ -342,6 +343,10 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 20px;
+}
+
+figcaption {
+  display: none;
 }
 
 .modal_background {

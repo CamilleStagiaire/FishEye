@@ -10,7 +10,8 @@ class Photographer {
         this._tagline = data.tagline
         this._price = data.price
         this._portrait = data.portrait
-        this._media = [];
+        this.medias = data.medias;
+    this._medias = [];
     }
 
     get name() {
@@ -45,25 +46,27 @@ class Photographer {
         return this._media;
     }
 
-    /**
-    * Renvoie le nombre total de likes du photographe
-    * @returns {number}
-    */
-    getTotalLikes() {
-        let totalLikes = 0;
-
-        this.media.forEach((media) => {
-            totalLikes += media.likes;
-        });
-
-        return totalLikes;
-    }
+    
 
     /**
      * initialise la liste des médias du photographe 
      * @param {Media} media 
      */
     addMedia(media) {
-        this._media.push(media);
+        this._medias.push(media);
     }
+
+    /**
+    * Renvoie le nombre total de likes du photographe
+    * @returns {number}
+    */
+    getTotalLikes() {
+        let totalLikes = 0;
+        for (const media of this._medias) {
+          totalLikes += media.likes;
+        }
+        return totalLikes;
+      }
+
+      
 }

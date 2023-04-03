@@ -29,14 +29,11 @@ body {
 
     &_photographer {
         margin-top: 20px;
+        margin-left: 100px;
         margin-bottom: 50px;
         display: flex;
         align-items: center;
-        margin-left: 50px;
 
-        &_icon {
-            margin-right: 30px;
-        }
     }
 }
 
@@ -227,6 +224,13 @@ body {
 
         }
     }
+
+    img{
+      // position: relative;
+       left: 150px;
+       top: 0;
+     
+    }
 }
 
 .dropdown {
@@ -243,6 +247,7 @@ body {
         left: -40px;
         z-index: 10;
     }
+    
 }
 
 .hidden {
@@ -350,6 +355,11 @@ body {
 
 
 }
+
+figcaption {
+    display: none;
+}
+
 
 
 .modal_background {
