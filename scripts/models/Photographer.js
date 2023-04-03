@@ -11,7 +11,7 @@ class Photographer {
         this._price = data.price
         this._portrait = data.portrait
         this.medias = data.medias;
-    this._medias = [];
+        this._medias = [];
     }
 
     get name() {
@@ -46,8 +46,6 @@ class Photographer {
         return this._media;
     }
 
-    
-
     /**
      * initialise la liste des médias du photographe 
      * @param {Media} media 
@@ -63,10 +61,9 @@ class Photographer {
     getTotalLikes() {
         let totalLikes = 0;
         for (const media of this._medias) {
-          totalLikes += media.likes;
+            totalLikes += media.likes;
         }
         return totalLikes;
-      }
-
-      
+    }
 }
+export { Photographer };

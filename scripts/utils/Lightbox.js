@@ -1,5 +1,4 @@
 class Lightbox {
-
     //Initialise la lightbox
     static init() {
         const links = document.querySelectorAll('.photograph_media>.media img');
@@ -119,3 +118,5 @@ class Lightbox {
 }
 window.Lightbox = Lightbox;
 Lightbox.init()
+
+export { Lightbox };

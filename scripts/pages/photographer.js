@@ -1,3 +1,6 @@
+import { Lightbox } from '../utils/Lightbox.js';
+import { VideoMedia } from '../models/Media.js';
+
 class PhotographerPage {
   /**
    * @param {Photographer} photographer 
@@ -139,8 +142,8 @@ class PhotographerPage {
     } else {
       console.error('Media is undefined');
     }
-
     return $wrapper;
   }
-
 }
+
+export { PhotographerPage };

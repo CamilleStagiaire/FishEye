@@ -50,7 +50,7 @@ class FormModal {
         }
 
         if (!valid) {
-// créer un champs invalid
+          // créer un champs invalid
         } else {
           console.log("votre prénom : " + firstNameInputValue);
 
@@ -62,7 +62,6 @@ class FormModal {
         }
       });
   }
-
 
   createForm() {
     const form = `
@@ -95,8 +94,6 @@ class FormModal {
 
     this.$wrapper.innerHTML = form;
     this.$modalWrapper = this.$wrapper.querySelector('.modal');
-
-
   }
 
   createBackground() {
@@ -117,4 +114,6 @@ class FormModal {
     this.onSubmitForm();
   }
 }
+
+export { FormModal };
 

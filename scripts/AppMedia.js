@@ -1,3 +1,12 @@
+//import { ImageMedia, VideoMedia } from './factories/Media.js';
+import { Photographer } from './models/Photographer.js';
+import { MediaFactory } from './factories/MediaFactory.js';
+import { MediaApi, PhotographerApi } from './api/Api.js';
+import { Filter } from './utils/Filter.js';
+import { FilterDropdown } from './pages/FilterDropdown.js';
+import { FormModal } from './utils/ContactForm.js';
+import { PhotographerPage } from './pages/photographer.js';
+
 class AppMedia {
   constructor() {
     this.$photographersInfos = document.querySelector('.photograph_header_infos')
@@ -27,8 +36,6 @@ class AppMedia {
       photographer.addMedia(media);
       return media;
     });
-
- 
 
     // Tri des médias par popularité
     const filterMedias = new Filter(medias);
@@ -71,13 +78,11 @@ class AppMedia {
       // Création et insertion des cartes de médias
       const mediaCards = medias.map(media => template.createMediaCard(media));
       mediaCards.forEach(mediaCard => this.$photographersMedia.appendChild(mediaCard));
-      
+
     } else {
       console.error('Photographer not found with id:', photographerId);
     }
   }
-
-  
 }
 
 const appMedia = new AppMedia()

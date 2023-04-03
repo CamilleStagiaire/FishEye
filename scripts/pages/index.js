@@ -1,6 +1,6 @@
 class PhotographerCard {
   /**
-   * @param {Photographer} photographer 
+   * @param {Object} photographer 
    */
   constructor(photographer) {
     this._photographer = photographer
@@ -34,3 +34,5 @@ class PhotographerCard {
     return $wrapper
   }
 }
+
+export { PhotographerCard };

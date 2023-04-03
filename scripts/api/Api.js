@@ -55,3 +55,4 @@ class MediaApi extends Api {
   }
 }
 
+export { PhotographerApi, MediaApi };

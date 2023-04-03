@@ -94,4 +94,5 @@ class VideoMedia extends Media {
   }
 }
 
+export { Media, ImageMedia, VideoMedia };
 

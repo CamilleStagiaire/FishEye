@@ -1,4 +1,6 @@
- class MediaFactory {
+import { ImageMedia, VideoMedia } from '../models/Media.js';
+
+class MediaFactory {
     /**
      * @param {Object} data 
      * @returns {ImageMedia|VideoMedia} 
@@ -13,5 +15,5 @@
         }
     }
 }
-//export { MediaFactory };
 
+export { MediaFactory, ImageMedia, VideoMedia };

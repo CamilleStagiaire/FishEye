@@ -1,3 +1,8 @@
+import { Photographer } from '../models/Photographer.js';
+import { Media } from '../models/Media.js';
+import { Filter} from '../utils/Filter.js';
+import { PhotographerPage } from '../pages/photographer.js';
+
 class FilterDropdown {
   /**
     * @param {Media[]} medias 
@@ -13,13 +18,11 @@ class FilterDropdown {
   }
 
   /**
-   * 
    * @param {string} filterBy 
    */
   async filterMedias(filterBy) {
     this.clearMediasWrapper();
 
-    // Création d'une instance de la classe Filter avec la liste des médias à filtrer
     const filterMedias = new Filter(this.medias);
     let filteredMedias = [];
 
@@ -48,11 +51,7 @@ class FilterDropdown {
     // Mettre à jour l'encart des likes
     const photographerPage = new PhotographerPage(this._photographer);
     console.log(photographerPage)
-    //const totalLikes = this._photographer.getTotalLikes();
-    console.log(photographerPage);
   }
-
-
 
   onChangeFilter() {
     const filterButtons = this.$wrapper.querySelectorAll('.filter-form_button');
@@ -89,7 +88,6 @@ class FilterDropdown {
     this.$mediasWrapper.innerHTML = "";
   }
 
-  // Rendu HTML du dropdowm
   render() {
     const filterForm = `
     <div class="filter">
@@ -108,5 +106,6 @@ class FilterDropdown {
     this.onChangeFilter();
     this.$filterWrapper.appendChild(this.$wrapper);
   }
-
 }
+
+export { FilterDropdown };

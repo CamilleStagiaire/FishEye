@@ -39,3 +39,5 @@ class Filter {
     return filteredMedias;
   }
 }
+
+export { Filter };
