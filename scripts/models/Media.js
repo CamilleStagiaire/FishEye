@@ -53,6 +53,9 @@ class Media {
   get isLiked() {
     return this._isLiked;
   }
+  set isLiked(value) {
+    this._isLiked = value;
+  }
 }
 
 //

@@ -39,7 +39,7 @@ class AppMedia {
 
     // Tri des médias par popularité
     const filterMedias = new Filter(medias);
-    const filteredMedias = await filterMedias.filterByLikes();
+    const filteredMedias = filterMedias.filterByLikes();
 
     // Vérification si le photographe est trouvé
     if (photographer) {

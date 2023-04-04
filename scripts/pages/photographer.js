@@ -3,10 +3,11 @@ import { VideoMedia } from '../models/Media.js';
 
 class PhotographerPage {
   /**
-   * @param {Photographer} photographer 
+   * @param {Objet} photographer 
    */
-  constructor(photographer) {
+  constructor(photographer, medias) {
     this._photographer = photographer;
+    this._medias = medias;
   }
 
   /**
@@ -56,24 +57,23 @@ class PhotographerPage {
   createLikesCounter() {
     const $likesCounter = document.createElement("div");
     $likesCounter.classList.add("likes_counter");
-
     const totalLikes = this._photographer.getTotalLikes();
-    const likesText = `<div class="likes_container"><span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
+    const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
     $likesCounter.innerHTML = likesText;
 
     return $likesCounter;
   }
 
-  /**
-   * Mise à jour de l'encart affichant le nombre total de likes du photographe
-   */
+  //Mise à jour de l'encart affichant le nombre total de likes du photographe
   updateLikesCounter() {
     const $likesCounter = document.querySelector('.likes_counter');
-    const totalLikes = this._photographer.getTotalLikes();
-    const likesText = `<div class="likes_container"><span>${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
-    $likesCounter.innerHTML = likesText;
+    const photographer = this._photographer;
+    if (photographer) {
+      const totalLikes = photographer.getTotalLikes();
+      const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${photographer.price} € / jour</span></div>`;
+      $likesCounter.innerHTML = likesText;
+    } 
   }
-
 
   /**
    *  Création de l'article contenant le media (image ou vidéo)
@@ -90,7 +90,7 @@ class PhotographerPage {
         <h3 class="media_title">${media.title}</h3>
         <div class="media_likes">
           <h4>${media.likes}</h4>
-          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-heart${media.isLiked ? ' fa-red-heart' : ''}"></i>
         </div>
       </div>
       `;
@@ -131,14 +131,14 @@ class PhotographerPage {
           $wrapper.querySelector('.media_likes h4').textContent = media.likes;
           $likeButton.classList.remove('fa-red-heart');
         }
-        this.updateLikesCounter(); // Mise à jour le total des likes du photographe
+        this.updateLikesCounter(); // Mise à jour le total des likes du photographe 
       });
-
 
       // lightbox
       $wrapper.addEventListener('click', () => {
         new Lightbox(media.url);
       });
+
     } else {
       console.error('Media is undefined');
     }

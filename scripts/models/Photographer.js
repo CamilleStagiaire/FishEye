@@ -10,8 +10,7 @@ class Photographer {
         this._tagline = data.tagline
         this._price = data.price
         this._portrait = data.portrait
-        this.medias = data.medias;
-        this._medias = [];
+        this._medias = data.medias;
     }
 
     get name() {
@@ -51,7 +50,10 @@ class Photographer {
      * @param {Media} media 
      */
     addMedia(media) {
-        this._medias.push(media);
+        if (!this._medias) {
+            this._medias = [];
+          }
+          this._medias.push(media);
     }
 
     /**

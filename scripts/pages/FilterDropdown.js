@@ -1,6 +1,6 @@
 import { Photographer } from '../models/Photographer.js';
 import { Media } from '../models/Media.js';
-import { Filter} from '../utils/Filter.js';
+import { Filter } from '../utils/Filter.js';
 import { PhotographerPage } from '../pages/photographer.js';
 
 class FilterDropdown {
@@ -9,12 +9,12 @@ class FilterDropdown {
     * @param {Photographer} photographer
     */
   constructor(medias, photographer) {
-    this.medias = medias;
-    this.photographer = photographer;
+    this._medias = medias;
+    this._photographer = photographer;
     this.$wrapper = document.createElement("div");
     this.$filterWrapper = document.querySelector(".dropdown");
-
-    this.$mediasWrapper = document.querySelector(".photograph_media");
+    this.$photographersLikes = document.querySelector('.photograph_likes')
+    this.$mediasWrapper = document.querySelector(".photograph_media");    
   }
 
   /**
@@ -23,7 +23,7 @@ class FilterDropdown {
   async filterMedias(filterBy) {
     this.clearMediasWrapper();
 
-    const filterMedias = new Filter(this.medias);
+    const filterMedias = new Filter(this._medias);
     let filteredMedias = [];
 
     switch (filterBy) {
@@ -37,28 +37,40 @@ class FilterDropdown {
         filteredMedias = await filterMedias.filterByLikes();
         break;
       default:
-        filteredMedias = this.medias;
+        filteredMedias = this._medias;
         break;
     }
 
+    const template = new PhotographerPage(this._photographer);
+
     filteredMedias.forEach((media) => {
-      
-      const template = new PhotographerPage(this._photographer);
-      console.log(media._like)
       this.$mediasWrapper.appendChild(template.createMediaCard(media));
     });
-  
-    // Mettre à jour l'encart des likes
-    const photographerPage = new PhotographerPage(this._photographer);
-    console.log(photographerPage)
+
+    const $likeButtons = this.$mediasWrapper.querySelectorAll('.fa-heart');
+
+    $likeButtons.forEach(($likeButton) => {
+      $likeButton.addEventListener('click', () => {
+        const totalLikes = filteredMedias.reduce((acc, media) => acc + media.likes, 0);
+        this.updateLikesCountered(totalLikes);
+      });
+    });
+  }
+
+  //mise à jour du compteur de likes
+  updateLikesCountered(totalLikes) {
+    const $likesCounter = document.querySelector('.totalLikes');
+    if ($likesCounter) {
+      $likesCounter.innerHTML = `${totalLikes} <i class="fa-solid fa-heart"></i>`;
+    }
   }
 
   onChangeFilter() {
     const filterButtons = this.$wrapper.querySelectorAll('.filter-form_button');
-    const filterImg = this.$wrapper.querySelectorAll('.dropdown_open');
+    //const filterImg = this.$wrapper.querySelectorAll('.dropdown_open');
     const dropdown = this.$wrapper.querySelector('#dropdown');
     let secondClick = false;
-  
+
     dropdown.addEventListener('click', (e) => {
       if (e.target !== dropdown) {
         if (!secondClick) {
@@ -71,18 +83,16 @@ class FilterDropdown {
           filterButtons.forEach((btn) => {
             if (btn !== newnode) {
               btn.classList.add('hidden');
-             
+
             }
           });
-  
-          // Appliquer le filtre
           this.filterMedias(newnode.value);
         }
         secondClick = !secondClick;
       }
     });
   }
-  
+
   // Supprime tous les éléments dans la template
   clearMediasWrapper() {
     this.$mediasWrapper.innerHTML = "";
