@@ -28,13 +28,13 @@ class FilterDropdown {
 
     switch (filterBy) {
       case "title":
-        filteredMedias = await filterMedias.filterByTitle();
+        filteredMedias = filterMedias.filterByTitle();
         break;
       case "date":
-        filteredMedias = await filterMedias.filterByDate();
+        filteredMedias = filterMedias.filterByDate();
         break;
       case "likes":
-        filteredMedias = await filterMedias.filterByLikes();
+        filteredMedias = filterMedias.filterByLikes();
         break;
       default:
         filteredMedias = this._medias;
@@ -82,8 +82,7 @@ class FilterDropdown {
           dropdown.insertBefore(newnode, first);
           filterButtons.forEach((btn) => {
             if (btn !== newnode) {
-              btn.classList.add('hidden');
-
+              btn.classList.add('hidden');             
             }
           });
           this.filterMedias(newnode.value);
@@ -102,7 +101,7 @@ class FilterDropdown {
     const filterForm = `
     <div class="filter">
     <label id="filter_label" for="filter-select">Trier par: </label>
-    <div class="filter-form" aria-labelledby="filter_label">
+    <div class="filter-form" aria-labelledby="filter_label">    
       <img src="assets/images/chevron.png" class="dropdown_open"/>
       <div class="dropdown" id="dropdown" role="listbox" tabindex="-1" hidden>
         <button class="filter-form_button" id="likes-btn" type="button" role="option" value="likes" tabindex="0">Popularité</button>

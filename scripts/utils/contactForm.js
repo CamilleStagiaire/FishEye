@@ -6,7 +6,6 @@ class FormModal {
     this._photographer = photographer;
     this.$wrapper = document.createElement('div');
     this.createForm(photographer);
-
   }
 
   onSubmitForm() {
@@ -29,37 +28,59 @@ class FormModal {
 
         let valid = true;
 
-        if (!firstNameInputValue || firstNameInputValue.length < CARACT_MINI || !firstNameInputValue.match(nameFormat)) {
+        const errorMessages = this.$wrapper.querySelectorAll('.error-message');
+        errorMessages.forEach(errorMessage => errorMessage.remove());
+
+        if (!firstNameInputValue || firstNameInputValue.length < CARACT_MINI || !nameFormat.test(firstNameInputValue)) {
           console.log('Prénom invalide');
           valid = false;
+          const firstNameError = document.createElement('div');
+          this.$wrapper.querySelector('#firstname').classList.add('error');
+          firstNameError.classList.add('error-message');
+          firstNameError.innerHTML = 'Le prénom doit contenir au moins 2 caractères';
+          this.$wrapper.querySelector('#firstname').insertAdjacentElement('afterend', firstNameError);
         }
 
-        if (!lastNameInputValue || lastNameInputValue.length < CARACT_MINI || !lastNameInputValue.match(nameFormat)) {
+        if (!lastNameInputValue || lastNameInputValue.length < CARACT_MINI || !nameFormat.test(lastNameInputValue)) {
           console.log('Nom invalide');
           valid = false;
+          const lastNameError = document.createElement('div');
+          this.$wrapper.querySelector('#lastname').classList.add('error');
+          lastNameError.classList.add('error-message');
+          lastNameError.innerHTML = 'Le nom doit contenir au moins 2 caractères';
+          this.$wrapper.querySelector('#lastname').insertAdjacentElement('afterend', lastNameError);
         }
 
-        if (!emailInputValue || !emailInputValue.match(mailFormat)) {
+        if (!emailInputValue || !mailFormat.test(emailInputValue)) {
           console.log('Email invalide');
           valid = false;
+          const emailError = document.createElement('div');
+          this.$wrapper.querySelector('#email').classList.add('error');
+          emailError.classList.add('error-message');
+          emailError.innerHTML = "Le format d'email n'est pas valide";
+          this.$wrapper.querySelector('#email').insertAdjacentElement('afterend', emailError);
         }
 
         if (!messageInputValue) {
           console.log('Message invalide');
           valid = false;
+          const messageError = document.createElement('div');
+          this.$wrapper.querySelector('#message').classList.add('error');
+          messageError.classList.add('error-message');
+          messageError.innerHTML = "Vous devez entrer un message";
+          this.$wrapper.querySelector('#message').insertAdjacentElement('afterend', messageError);
         }
 
-        if (!valid) {
-          // créer un champs invalid
-        } else {
+        if (valid) {
           console.log("votre prénom : " + firstNameInputValue);
+          console.log("votre nom : " + lastNameInputValue);
+          console.log("votre email : " + emailInputValue);
+          console.log("votre message: " + messageInputValue);
 
-          // Fermeture de la modal
-          this.$modalWrapper.classList.remove('modal');
-          this.$modalWrapper.innerHTML = '';
-          const background = document.querySelector('.modal_background')
-          background.remove()
-        }
+          this.onClose();
+          this.createBackground()
+          this.createConfirmModal();
+        } 
       });
   }
 
@@ -73,21 +94,22 @@ class FormModal {
         <form action="#" method="POST">
           <div class="form-group">
             <label class="form-label" for="firstname">Prénom</label>
-            <input id="firstname" name="firstname" type="text">
+            <input class="text" id="firstname" name="firstname" type="text">
           </div>
           <div class="form-group">
             <label class="form-label" for="lastname">Nom</label>
-            <input id="lastname" name="lastname" type="text">
+            <input class="text" id="lastname" name="lastname" type="text">
           </div>
           <div class="form-group">
             <label class="form-label" for="email">Email</label>
-            <input id="email" name="email" type="text">
+            <input class="text" id="email" name="email" type="text">
           </div>
           <div class="form-group">
             <label class="form-label" for="message">Votre message</label>
-            <input id="message" name="message" type="text">
+            <input class="text" id="message" name="message" type="text">
           </div>
           <input class="contact_button" type="submit" value="Envoyer">
+
         </form>
       </div>
     `;
@@ -102,10 +124,40 @@ class FormModal {
     document.body.insertBefore(background, document.body.firstChild);
   }
 
+  createConfirmModal() {
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.innerHTML = `
+    <div class="modal_header">
+      <h2>Confirmation</h2>
+      <img src="assets/icons/close.svg" class="close"/>
+    </div>
+    <div class="modal_body">
+      <p>Votre message a bien été envoyé.</p>
+    </div>
+    <button class="contact_button close_button" type="submit">Fermer</button>
+  `;
+    document.body.appendChild(modal);
+    const closeButton = modal.querySelector('.close');
+    closeButton.addEventListener('click', () => {
+      this.onClose();
+      modal.remove();
+    });
+    const closeBtn = modal.querySelector('.close_button');
+    closeBtn.addEventListener('click', () => {
+      this.onClose();
+      modal.remove();
+    });
+  }
+
   onClose() {
-    this.$modalWrapper.style.display = "none";
-    const background = document.querySelector('.modal_background');
-    background.style.display = "none";
+    const element = document.querySelector('.modal');
+    if (element) {
+      element.classList.add('fadeOut');
+      const background = document.querySelector('.modal_background');
+      background.style.display = "none";
+      element.parentNode.removeChild(element);
+    }
   }
 
   render() {
