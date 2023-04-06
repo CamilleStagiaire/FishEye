@@ -69,12 +69,12 @@ body {
     }
 
     &_tagline {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     &_price {
         color: #757575;
-        font-size: 9px;
+        font-size: 11px;
     }
 
     &_photo {
@@ -135,6 +135,11 @@ body {
 }
 
 .media {
+
+    a{
+
+        cursor: pointer;
+    }
     &_img {
         width: 350px;
         height: 300px;

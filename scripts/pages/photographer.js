@@ -19,13 +19,13 @@ class PhotographerPage {
     $wrapper.setAttribute('role', 'contentinfo');
     $wrapper.classList.add('photograph_infos');
 
-    const photographerInfos =
-      `<h1 class="photograph_infos_name">${this._photographer.name}</h1>
-      <h2 class="photograph_infos_location">
+    const photographerInfos = `
+    <h1 class="photograph_infos_name">${this._photographer.name}</h1>
+    <h2 class="photograph_infos_location">
       <span class="photograph_infos_location_city">${this._photographer.city}</span>,
       <span class="photograph_infos_location_country">${this._photographer.country}</span>
     </h2>
-     <p class="photograph_tagline">${this._photographer.tagline}</p>
+    <p class="photograph_tagline">${this._photographer.tagline}</p>
      `;
 
     $wrapper.innerHTML = photographerInfos;
@@ -60,7 +60,6 @@ class PhotographerPage {
     const totalLikes = this._photographer.getTotalLikes();
     const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
     $likesCounter.innerHTML = likesText;
-
     return $likesCounter;
   }
 
@@ -72,7 +71,7 @@ class PhotographerPage {
       const totalLikes = photographer.getTotalLikes();
       const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${photographer.price} € / jour</span></div>`;
       $likesCounter.innerHTML = likesText;
-    } 
+    }
   }
 
   /**
@@ -103,14 +102,14 @@ class PhotographerPage {
           <div class="media_img"><video src="${media.url}" controls></video></div>
           <figcaption>${media.title}</figcaption>
         </figure>
-      `;
+        `;
       } else {
         mediaTag = `
-        <figure>
-          <div class="media_img"><img alt="${media.title}" src="${media.url}"></div>
-          <figcaption>${media.title}</figcaption>
-        </figure>
-      `;
+          <figure>
+            <div class="media_img"><a><img alt="${media.title}" src="${media.url}" tabindex="0"></div>
+            <figcaption>${media.title}</figcaption>
+          </figure>
+        `;
       }
 
       const mediaCard = mediaTag + mediaTitle;
@@ -119,6 +118,9 @@ class PhotographerPage {
       // icône du cœur
       const $likeButton = $wrapper.querySelector('.fa-heart');
       $likeButton.setAttribute('aria-label', 'J\'aime');
+      $likeButton.setAttribute('tabindex', '0');
+
+      // Ecouteur d'événements pour le clic
       $likeButton.addEventListener('click', (e) => {
         e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
         if (!media.isLiked) {
@@ -134,11 +136,35 @@ class PhotographerPage {
         this.updateLikesCounter(); // Mise à jour le total des likes du photographe 
       });
 
+      // Ecouteur d'événements pour la touche 'enter'
+$likeButton.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
+    if (!media.isLiked) {
+      media.addLike();
+      $wrapper.querySelector('.media_likes h4').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
+      $likeButton.classList.add('fa-red-heart');
+    } else {
+      media.likes--;
+      media._isLiked = false;
+      $wrapper.querySelector('.media_likes h4').textContent = media.likes;
+      $likeButton.classList.remove('fa-red-heart');
+    }
+    this.updateLikesCounter(); // Mise à jour le total des likes du photographe
+  }
+});
+
       // lightbox
       $wrapper.addEventListener('click', () => {
         new Lightbox(media.url);
       });
 
+      // Ouverture de la lightbox avec la touche "Enter" sur l'image
+      $wrapper.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          new Lightbox(media.url);
+        }
+      });
     } else {
       console.error('Media is undefined');
     }

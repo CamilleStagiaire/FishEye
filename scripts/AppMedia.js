@@ -11,7 +11,6 @@ class AppMedia {
   constructor() {
     this.$photographersInfos = document.querySelector('.photograph_header_infos')
     this.$photographersPortrait = document.querySelector('.photograph_header_portrait')
-    this.$photographersHeader = document.querySelector('.photograph_header')
     this.$photographersDropdown = document.querySelector('.dropdown')
     this.$photographersMedia = document.querySelector('.photograph_media')
     this.$photographersLikes = document.querySelector('.photograph_likes')
@@ -69,10 +68,16 @@ class AppMedia {
         modal.render();
         this.$photographersPortrait.appendChild(modal.$wrapper);
 
-        const closeButton = document.querySelector('.close');
-        closeButton.addEventListener('click', () => {
-          modal.onClose();
-        });
+       const closeButton = document.querySelector('.close');
+       closeButton.addEventListener('click', () => {
+         modal.onClose();
+       });
+       closeButton.addEventListener('keydown', (e) => {
+         if (e.key === 'Enter') {
+           modal.onClose();
+         }
+       });
+      
       });
 
       // Création et insertion des cartes de médias

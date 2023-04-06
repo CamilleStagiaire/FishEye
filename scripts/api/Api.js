@@ -1,5 +1,5 @@
 class Api {
-  /** 
+  /**
      *
      *@param {string} url
      */
@@ -8,7 +8,7 @@ class Api {
   }
 
   /**
-   * @param {string} type 
+   * @param {string} type
    * @returns {Promise}
    */
   async get(type) {
@@ -25,8 +25,8 @@ class PhotographerApi extends Api {
    */
   constructor(url) {
     super(url);
-
   }
+
   /**
    * @returns {Promise}
    */
@@ -44,13 +44,13 @@ class MediaApi extends Api {
   }
 
   /**
-   * @param {number} photographeId 
+   * @param {number} photographeId
    * @returns {Promise}
    */
   async getMedias(photographeId) {
     const response = await fetch(this._url);
     const data = await response.json();
-    const medias = data.media.filter(media => media.photographerId === photographeId);
+    const medias = data.media.filter((media) => media.photographerId === photographeId);
     return medias;
   }
 }

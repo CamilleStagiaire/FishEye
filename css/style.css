@@ -102,11 +102,11 @@ body {
   font-size: 13px;
 }
 .photographer_tagline {
-  font-size: 10px;
+  font-size: 11px;
 }
 .photographer_price {
   color: #757575;
-  font-size: 9px;
+  font-size: 11px;
 }
 .photographer_photo {
   height: 160px;
@@ -157,6 +157,9 @@ body {
   justify-content: space-between;
 }
 
+.media a {
+  cursor: pointer;
+}
 .media_img {
   width: 350px;
   height: 300px;

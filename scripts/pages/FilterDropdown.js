@@ -14,7 +14,7 @@ class FilterDropdown {
     this.$wrapper = document.createElement("div");
     this.$filterWrapper = document.querySelector(".dropdown");
     this.$photographersLikes = document.querySelector('.photograph_likes')
-    this.$mediasWrapper = document.querySelector(".photograph_media");    
+    this.$mediasWrapper = document.querySelector(".photograph_media");
   }
 
   /**
@@ -55,6 +55,13 @@ class FilterDropdown {
         this.updateLikesCountered(totalLikes);
       });
     });
+    // MAJ du compteur de likes au clavier
+    $likeButtons.forEach(($likeButton) => {
+      $likeButton.addEventListener('keydown', () => {
+        const totalLikes = filteredMedias.reduce((acc, media) => acc + media.likes, 0);
+        this.updateLikesCountered(totalLikes);
+      });
+    });
   }
 
   //mise à jour du compteur de likes
@@ -67,7 +74,6 @@ class FilterDropdown {
 
   onChangeFilter() {
     const filterButtons = this.$wrapper.querySelectorAll('.filter-form_button');
-    //const filterImg = this.$wrapper.querySelectorAll('.dropdown_open');
     const dropdown = this.$wrapper.querySelector('#dropdown');
     let secondClick = false;
 
@@ -82,7 +88,7 @@ class FilterDropdown {
           dropdown.insertBefore(newnode, first);
           filterButtons.forEach((btn) => {
             if (btn !== newnode) {
-              btn.classList.add('hidden');             
+              btn.classList.add('hidden');
             }
           });
           this.filterMedias(newnode.value);
@@ -100,16 +106,16 @@ class FilterDropdown {
   render() {
     const filterForm = `
     <div class="filter">
-    <label id="filter_label" for="filter-select">Trier par: </label>
-    <div class="filter-form" aria-labelledby="filter_label">    
-      <img src="assets/images/chevron.png" class="dropdown_open"/>
-      <div class="dropdown" id="dropdown" role="listbox" tabindex="-1" hidden>
-        <button class="filter-form_button" id="likes-btn" type="button" role="option" value="likes" tabindex="0">Popularité</button>
-        <button class="filter-form_button hidden" id="title-btn" type="button" role="option" value="title" tabindex="0">Titre</button>
-        <button class="filter-form_button hidden" id="date-btn" type="button" role="option" value="date" tabindex="0">Date</button>
+      <label id="filter_label" for="dropdown">Trier par</label>
+      <div class="filter-form" aria-labelledby="filter_label" role="button" aria-haspopup="listbox" aria-expanded="false">    
+        <img src="assets/images/chevron.png" class="dropdown_open" alt="open dropdown"/>
+        <div class="dropdown" id="dropdown" role="listbox" tabindex="-1" hidden>
+          <button class="filter-form_button" id="likes-btn" type="button" role="option" aria-activedescendant aria-selected="true" aria-labelledby="dropdown likes-btn" value="likes" tabindex="0">Popularité</button>
+          <button class="filter-form_button hidden" id="title-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown title-btn" value="title" tabindex="0">Titre</button>
+          <button class="filter-form_button hidden" id="date-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown date-btn" value="date" tabindex="0">Date</button>
+        </div>
       </div>
     </div>
-  </div>
     `;
     this.$wrapper.innerHTML = filterForm;
     this.onChangeFilter();

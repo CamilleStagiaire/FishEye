@@ -9,10 +9,9 @@ class FormModal {
   }
 
   onSubmitForm() {
-    this.$wrapper
-      .querySelector('form')
-      .addEventListener('submit', e => {
-        e.preventDefault();
+    const form = this.$wrapper.querySelector('form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
 
         const firstNameInputValue = this.$wrapper.querySelector('#firstname').value;
         const lastNameInputValue = this.$wrapper.querySelector('#lastname').value;
@@ -86,10 +85,10 @@ class FormModal {
 
   createForm() {
     const form = `
-      <div class="modal">
+      <div class="modal" tabindex="0">
         <div class="modal_header">
         <h2>Contactez-moi<br>${this._photographer.name}</h2>
-        <img src="assets/icons/close.svg" class="close"/>
+        <img src="assets/icons/close.svg" class="close" tabindex="0"/>
         </div>
         <form action="#" method="POST">
           <div class="form-group">
@@ -113,7 +112,6 @@ class FormModal {
         </form>
       </div>
     `;
-
     this.$wrapper.innerHTML = form;
     this.$modalWrapper = this.$wrapper.querySelector('.modal');
   }
@@ -127,15 +125,17 @@ class FormModal {
   createConfirmModal() {
     const modal = document.createElement('div');
     modal.classList.add('modal');
+    modal.setAttribute('tabindex', '0');
+
     modal.innerHTML = `
     <div class="modal_header">
       <h2>Confirmation</h2>
-      <img src="assets/icons/close.svg" class="close"/>
+      <img src="assets/icons/close.svg" class="close" tabindex="0"/>
     </div>
     <div class="modal_body">
       <p>Votre message a bien été envoyé.</p>
     </div>
-    <button class="contact_button close_button" type="submit">Fermer</button>
+    <button class="contact_button close_button" type="submit" tabindex="0">Fermer</button>
   `;
     document.body.appendChild(modal);
     const closeButton = modal.querySelector('.close');
@@ -143,10 +143,22 @@ class FormModal {
       this.onClose();
       modal.remove();
     });
+    closeButton.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        this.onClose();
+        modal.remove();
+      }
+    });
     const closeBtn = modal.querySelector('.close_button');
     closeBtn.addEventListener('click', () => {
       this.onClose();
       modal.remove();
+    });
+    closeBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        this.onClose();
+        modal.remove();
+      }
     });
   }
 
