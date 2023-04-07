@@ -18,6 +18,7 @@ class FilterDropdown {
   }
 
   /**
+   * Applique le filtre sélectionné sur les médias et met à jour l'affichage
    * @param {string} filterBy 
    */
   async filterMedias(filterBy) {
@@ -49,6 +50,7 @@ class FilterDropdown {
 
     const $likeButtons = this.$mediasWrapper.querySelectorAll('.fa-heart');
 
+    // MAJ du compteur de likes au click
     $likeButtons.forEach(($likeButton) => {
       $likeButton.addEventListener('click', () => {
         const totalLikes = filteredMedias.reduce((acc, media) => acc + media.likes, 0);
@@ -64,7 +66,10 @@ class FilterDropdown {
     });
   }
 
-  //mise à jour du compteur de likes
+  /**
+   * mise à jour du compteur de likes
+   * @param {number} totalLikes 
+   */
   updateLikesCountered(totalLikes) {
     const $likesCounter = document.querySelector('.totalLikes');
     if ($likesCounter) {

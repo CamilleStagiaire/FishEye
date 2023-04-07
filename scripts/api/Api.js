@@ -12,6 +12,7 @@ class Api {
    * @returns {Promise}
    */
   async get(type) {
+    //  récupérer les données de l'API
     return fetch(this._url)
       .then((res) => res.json())
       .then((res) => res[type])

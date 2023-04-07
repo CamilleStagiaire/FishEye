@@ -52,8 +52,8 @@ class Photographer {
     addMedia(media) {
         if (!this._medias) {
             this._medias = [];
-          }
-          this._medias.push(media);
+        }
+        this._medias.push(media);
     }
 
     /**

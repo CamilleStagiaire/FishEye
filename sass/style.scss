@@ -456,7 +456,7 @@ figcaption {
         justify-content: center;
         min-height: 100vh;
 
-        img {
+        img, video {
             object-fit: cover;
             width: 1050px;
             height: 900px;

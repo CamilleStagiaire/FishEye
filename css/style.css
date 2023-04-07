@@ -440,7 +440,7 @@ figcaption {
   justify-content: center;
   min-height: 100vh;
 }
-.lightbox__container img {
+.lightbox__container img, .lightbox__container video {
   object-fit: cover;
   width: 1050px;
   height: 900px;

@@ -1,13 +1,13 @@
 class Lightbox {
     //Initialise la lightbox
     static init() {
-        const links = document.querySelectorAll('.photograph_media>.media img');
-        links.forEach(link => {
-            link.addEventListener('click', e => {
-                
+        const mediaItems = document.querySelectorAll('.photograph_media>.media img, .photograph_media>.media video.lightbox-video');
+        mediaItems.forEach((item) => {
+            item.addEventListener('click', (e) => {
                 e.preventDefault();
-                new Lightbox(e.currentTarget.getAttribute('src'));
-               
+                const media = e.target.closest('img, video');
+                const url = media.src || media.currentSrc;
+                new Lightbox(url);
             });
         });
     }
@@ -18,6 +18,9 @@ class Lightbox {
     constructor(url) {
         const element = this.buildDOM(url);
         document.body.appendChild(element);
+
+        // tableau des éléments
+        this.mediaList = Array.from(document.querySelectorAll('.photograph_media .media video, .photograph_media .media img'));
 
         const closeButton = element.querySelector('.lightbox__close');
         closeButton.addEventListener('click', () => {
@@ -38,10 +41,15 @@ class Lightbox {
         document.addEventListener('keyup', (e) => {
             if (e.key === 'Escape') {
                 this.close();
-            } else if (e.key === 'ArrowRight') {
-                this.showNext();
-            } else if (e.key === 'ArrowLeft') {
-                this.showPrev();
+            } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                const direction = e.key === 'ArrowRight' ? 1 : -1;
+                const currentMedia = document.querySelector('.lightbox__container video, .lightbox__container img');
+                const currentSrc = currentMedia.getAttribute('src');
+                const currentIndex = this.mediaList.findIndex(media => media.getAttribute('src') === currentSrc);
+                const nextIndex = currentIndex + direction;
+                if (nextIndex >= 0 && nextIndex < this.mediaList.length) {
+                    this.showMedia(nextIndex);
+                }
             }
         });
     }
@@ -55,18 +63,18 @@ class Lightbox {
         const dom = document.createElement('div');
         dom.classList.add('lightbox');
         dom.setAttribute('tabindex', '0');
+        const mediaType = url.endsWith('.mp4') ? 'video' : 'img';
         dom.innerHTML = `
-        <button class="lightbox__close" tabindex="0">Fermer</button>
-        <button class="lightbox__next" tabindex="0">Suivant</button>
-        <button class="lightbox__prev" tabindex="0">Précédent</button>
-        <div class="lightbox__container">
-          <img src="${url}" alt="">
-        </div>
-      `;
+          <button class="lightbox__close" tabindex="0">Fermer</button>
+          <button class="lightbox__next" tabindex="0">Suivant</button>
+          <button class="lightbox__prev" tabindex="0">Précédent</button>
+          <div class="lightbox__container">
+            <${mediaType} src="${url}" alt=""${mediaType === 'video' ? ' controls class="lightbox-video"' : ''}></${mediaType}>
+          </div>
+        `;
         return dom;
     }
 
-    //Ferme la lightbox avec un délai de 500ms
     close() {
         const element = document.querySelector('.lightbox');
         if (element) {
@@ -77,48 +85,61 @@ class Lightbox {
         }
     }
 
-    //Affiche l'image suivante dans la lightbox
-    showNext() {
-        //récupère l'image courante
-        const currentImage = document.querySelector('.lightbox__container img');
-        //récupère l'attribut l'image courante
-        const currentSrc = currentImage.getAttribute('src');
-        // Récupère toutes les images de la page dans un tableau
-        const images = Array.from(document.querySelectorAll('.photograph_media>.media img'));
-        // Récupère l'index de l'image courante dans le tableau images
-        const currentIndex = images.findIndex(image => image.getAttribute('src') === currentSrc);
+    /**
+     * Affiche le média correspondant à l'index donné dans la lightbox
+     * @param {number} index //index du média
+     */
+    showMedia(index) {
+        // Récupère le média à partir de la liste des médias
+        const media = this.mediaList[index];
+        // Récupère l'URL du média
+        const src = media.getAttribute('src');
+        // Détermine le type de média (image ou vidéo) à partir de la balise HTML 
+        const type = media.tagName.toLowerCase();
+        const lightboxContainer = document.querySelector('.lightbox__container');
+        lightboxContainer.innerHTML = '';
 
-        if (currentIndex !== 8) {
-            // Calcule l'index de l'image suivante à afficher
-            const nextIndex = (currentIndex + 1) % images.length;
-            // Récupère l'image suivante à afficher
-            const nextImage = images[nextIndex];
-            // Récupère l'attribut src de l'image suivante
-            const nextSrc = nextImage.getAttribute('src');
-            // Change l'attribut de l'image courante pour afficher l'image suivante avec un délai de 500ms
-            setTimeout(() => {
-                currentImage.setAttribute('src', nextSrc);
-            }, 500);
+        if (type === 'img') {
+            const img = document.createElement('img');
+            img.setAttribute('src', src);
+            lightboxContainer.appendChild(img);
+        } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.setAttribute('src', src);
+            video.setAttribute('controls', true);
+            lightboxContainer.appendChild(video);
         }
     }
 
-    //Affiche l'image précédente dans la lightbox
-    showPrev() {
-        const currentImage = document.querySelector('.lightbox__container img');
-        const currentSrc = currentImage.getAttribute('src');
-        const images = Array.from(document.querySelectorAll('.photograph_media>.media img'));
-        const currentIndex = images.findIndex(image => image.getAttribute('src') === currentSrc);
+    showNext() {
+        //Récupère l'élément HTML qui contient le média courant
+        const currentMedia = document.querySelector('.lightbox__container video, .lightbox__container img');
+        // Récupère l'URL du média courant
+        const currentSrc = currentMedia.getAttribute('src');
+        // Récupère l'indice du média courant dans le tableau
+        const currentIndex = this.mediaList.findIndex(media => media.getAttribute('src') === currentSrc);
 
-        if (currentIndex !== 0) {
-            const prevIndex = (currentIndex - 1 + images.length) % images.length;
-            const prevImage = images[prevIndex];
-            const prevSrc = prevImage.getAttribute('src');
+        if (currentIndex !== -1 && currentIndex < this.mediaList.length - 1) {
             setTimeout(() => {
-                currentImage.setAttribute('src', prevSrc);
+                this.showMedia(currentIndex + 1)
+            }, 500);
+            ;
+        }
+    }
+
+    showPrev() {
+        const currentMedia = document.querySelector('.lightbox__container video, .lightbox__container img');
+        const currentSrc = currentMedia.getAttribute('src');
+        const currentIndex = this.mediaList.findIndex(media => media.getAttribute('src') === currentSrc);
+
+        if (currentIndex !== -1 && currentIndex > 0) {
+            setTimeout(() => {
+                this.showMedia(currentIndex - 1);
             }, 500);
         }
-    }  
+    }
 }
+
 window.Lightbox = Lightbox;
 Lightbox.init()
 

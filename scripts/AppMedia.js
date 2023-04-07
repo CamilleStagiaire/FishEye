@@ -68,16 +68,16 @@ class AppMedia {
         modal.render();
         this.$photographersPortrait.appendChild(modal.$wrapper);
 
-       const closeButton = document.querySelector('.close');
-       closeButton.addEventListener('click', () => {
-         modal.onClose();
-       });
-       closeButton.addEventListener('keydown', (e) => {
-         if (e.key === 'Enter') {
-           modal.onClose();
-         }
-       });
-      
+        const closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', () => {
+          modal.onClose();
+        });
+        closeButton.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            modal.onClose();
+          }
+        });
+
       });
 
       // Création et insertion des cartes de médias

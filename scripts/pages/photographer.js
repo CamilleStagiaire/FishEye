@@ -6,7 +6,6 @@ import { Media } from '../models/Media.js';
 class PhotographerPage {
 
   /**
-   * 
    * @param {Photographer} photographer 
    * @param {Media[]} medias 
    */
@@ -24,6 +23,7 @@ class PhotographerPage {
     $wrapper.setAttribute('role', 'contentinfo');
     $wrapper.classList.add('photograph_infos');
 
+    // Génère le HTML des informations du photographe
     const photographerInfos = `
     <h1 class="photograph_infos_name">${this._photographer.name}</h1>
     <h2 class="photograph_infos_location">
@@ -99,19 +99,19 @@ class PhotographerPage {
       </div>
       `;
 
-      // Vérification du média
+      // Vérification du type de media
       let mediaTag;
       if (media instanceof VideoMedia) {
         mediaTag = `
         <figure>
-          <div class="media_img"><video src="${media.url}" controls></video></div>
+          <div class="media_img"><a><video src="${media.url}" tabindex="0"></video></a></div>
           <figcaption>${media.title}</figcaption>
         </figure>
         `;
       } else {
         mediaTag = `
           <figure>
-            <div class="media_img"><a><img alt="${media.title}" src="${media.url}" tabindex="0"></div>
+            <div class="media_img"><a><img alt="${media.title}" src="${media.url}" tabindex="0"></a></div>
             <figcaption>${media.title}</figcaption>
           </figure>
         `;
@@ -155,13 +155,14 @@ class PhotographerPage {
             $wrapper.querySelector('.media_likes h4').textContent = media.likes;
             $likeButton.classList.remove('fa-red-heart');
           }
-          this.updateLikesCounter(); // Mise à jour le total des likes du photographe
+          this.updateLikesCounter();
         }
       });
 
-      // lightbox
-      $wrapper.addEventListener('click', () => {
+      // Ouverture de la lightbox au click sur l'image
+      $wrapper.addEventListener('click', (e) => {
         new Lightbox(media.url);
+        console.log(e.target);
       });
 
       // Ouverture de la lightbox avec la touche "Enter" sur l'image
