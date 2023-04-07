@@ -83,9 +83,6 @@ class AppMedia {
       // Création et insertion des cartes de médias
       const mediaCards = medias.map(media => template.createMediaCard(media));
       mediaCards.forEach(mediaCard => this.$photographersMedia.appendChild(mediaCard));
-
-    } else {
-      console.error('Photographer not found with id:', photographerId);
     }
   }
 }

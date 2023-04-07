@@ -1,9 +1,14 @@
 import { Lightbox } from '../utils/Lightbox.js';
 import { VideoMedia } from '../models/Media.js';
+import { Photographer } from '../models/Photographer.js';
+import { Media } from '../models/Media.js';
 
 class PhotographerPage {
+
   /**
-   * @param {Objet} photographer 
+   * 
+   * @param {Photographer} photographer 
+   * @param {Media[]} medias 
    */
   constructor(photographer, medias) {
     this._photographer = photographer;
@@ -137,22 +142,22 @@ class PhotographerPage {
       });
 
       // Ecouteur d'événements pour la touche 'enter'
-$likeButton.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
-    if (!media.isLiked) {
-      media.addLike();
-      $wrapper.querySelector('.media_likes h4').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
-      $likeButton.classList.add('fa-red-heart');
-    } else {
-      media.likes--;
-      media._isLiked = false;
-      $wrapper.querySelector('.media_likes h4').textContent = media.likes;
-      $likeButton.classList.remove('fa-red-heart');
-    }
-    this.updateLikesCounter(); // Mise à jour le total des likes du photographe
-  }
-});
+      $likeButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
+          if (!media.isLiked) {
+            media.addLike();
+            $wrapper.querySelector('.media_likes h4').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
+            $likeButton.classList.add('fa-red-heart');
+          } else {
+            media.likes--;
+            media._isLiked = false;
+            $wrapper.querySelector('.media_likes h4').textContent = media.likes;
+            $likeButton.classList.remove('fa-red-heart');
+          }
+          this.updateLikesCounter(); // Mise à jour le total des likes du photographe
+        }
+      });
 
       // lightbox
       $wrapper.addEventListener('click', () => {

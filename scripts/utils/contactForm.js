@@ -1,6 +1,8 @@
+import { Photographer } from '../models/Photographer.js';
+
 class FormModal {
   /**
-   * @param {Objet} photographer 
+   * @param { Photographer} photographer 
    */
   constructor(photographer) {
     this._photographer = photographer;

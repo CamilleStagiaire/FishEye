@@ -4,8 +4,10 @@ class Lightbox {
         const links = document.querySelectorAll('.photograph_media>.media img');
         links.forEach(link => {
             link.addEventListener('click', e => {
+                
                 e.preventDefault();
                 new Lightbox(e.currentTarget.getAttribute('src'));
+               
             });
         });
     }
@@ -52,10 +54,11 @@ class Lightbox {
     buildDOM(url) {
         const dom = document.createElement('div');
         dom.classList.add('lightbox');
+        dom.setAttribute('tabindex', '0');
         dom.innerHTML = `
-        <button class="lightbox__close">Fermer</button>
-        <button class="lightbox__next">Suivant</button>
-        <button class="lightbox__prev">Précédent</button>
+        <button class="lightbox__close" tabindex="0">Fermer</button>
+        <button class="lightbox__next" tabindex="0">Suivant</button>
+        <button class="lightbox__prev" tabindex="0">Précédent</button>
         <div class="lightbox__container">
           <img src="${url}" alt="">
         </div>
