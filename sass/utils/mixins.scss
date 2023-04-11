@@ -8,12 +8,17 @@
     height: 70px;
     border: none;
     background-color: $color-primary;
-    border-radius: 5px;
+    border-radius: $border-radius;
     cursor: pointer;
 }
 
 //boutons hover 
 @mixin btnHover {
-    opacity: 0.7;
-    box-shadow: $shadowHover;
+    color: black;
+    background-color: $color-modal;
+}
+
+@mixin btnHoverModale {
+    color: black;
+    background-color: $color-btn-hover
 }

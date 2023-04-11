@@ -106,7 +106,7 @@ class FormModal {
             <label class="form-label" for="message">Votre message</label>
             <input class="text" id="message" name="message" type="text">
           </div>
-          <input class="contact_button" type="submit" value="Envoyer">
+          <input class="contact_button close_button" type="submit" value="Envoyer">
 
         </form>
       </div>

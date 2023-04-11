@@ -28,17 +28,17 @@ class Lightbox {
             tabIndex.setAttribute('tabindex', '-1')
         });
 
-        const closeButton = element.querySelector('.lightbox__close');
+        const closeButton = element.querySelector('.lightbox_close');
         closeButton.addEventListener('click', () => {
             this.close();
         });
 
-        const nextButton = element.querySelector('.lightbox__next');
+        const nextButton = element.querySelector('.lightbox_next');
         nextButton.addEventListener('click', () => {
             this.showNext();
         });
 
-        const prevButton = element.querySelector('.lightbox__prev');
+        const prevButton = element.querySelector('.lightbox_prev');
         prevButton.addEventListener('click', () => {
             this.showPrev();
         });
@@ -49,7 +49,7 @@ class Lightbox {
                 this.close();
             } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
                 const direction = e.key === 'ArrowRight' ? 1 : -1;
-                const currentMedia = document.querySelector('.lightbox__container video, .lightbox__container img');
+                const currentMedia = document.querySelector('.lightbox_container video, .lightbox_container img');
                 const currentSrc = currentMedia.getAttribute('src');
                 const currentIndex = this.mediaList.findIndex(media => media.getAttribute('src') === currentSrc);
                 const nextIndex = currentIndex + direction;
@@ -71,10 +71,10 @@ class Lightbox {
         dom.setAttribute('tabindex', '0');
         const mediaType = url.endsWith('.mp4') ? 'video' : 'img';
         dom.innerHTML = `
-          <button class="lightbox__close" tabindex="0">Fermer</button>
-          <button class="lightbox__next" tabindex="0">Suivant</button>
-          <button class="lightbox__prev" tabindex="0">Précédent</button>
-          <div class="lightbox__container">
+          <button class="lightbox_close" tabindex="0">Fermer</button>
+          <button class="lightbox_next" tabindex="0">Suivant</button>
+          <button class="lightbox_prev" tabindex="0">Précédent</button>
+          <div class="lightbox_container">
             <${mediaType} src="${url}" alt=""${mediaType === 'video' ? ' controls class="lightbox-video"' : ''}></${mediaType}>
           </div>
         `;
@@ -108,7 +108,7 @@ class Lightbox {
         const src = media.getAttribute('src');
         // Détermine le type de média (image ou vidéo) à partir de la balise HTML 
         const type = media.tagName.toLowerCase();
-        const lightboxContainer = document.querySelector('.lightbox__container');
+        const lightboxContainer = document.querySelector('.lightbox_container');
         lightboxContainer.innerHTML = '';
 
         if (type === 'img') {
@@ -125,7 +125,7 @@ class Lightbox {
 
     showNext() {
         //Récupère l'élément HTML qui contient le média courant
-        const currentMedia = document.querySelector('.lightbox__container video, .lightbox__container img');
+        const currentMedia = document.querySelector('.lightbox_container video, .lightbox_container img');
         // Récupère l'URL du média courant
         const currentSrc = currentMedia.getAttribute('src');
         // Récupère l'indice du média courant dans le tableau
@@ -140,7 +140,7 @@ class Lightbox {
     }
 
     showPrev() {
-        const currentMedia = document.querySelector('.lightbox__container video, .lightbox__container img');
+        const currentMedia = document.querySelector('.lightbox_container video, .lightbox_container img');
         const currentSrc = currentMedia.getAttribute('src');
         const currentIndex = this.mediaList.findIndex(media => media.getAttribute('src') === currentSrc);
 

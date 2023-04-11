@@ -94,7 +94,7 @@ class PhotographerPage {
         <h3 class="media_title">${media.title}</h3>
         <div class="media_likes">
           <h4>${media.likes}</h4>
-          <i class="fa-solid fa-heart${media.isLiked ? ' fa-red-heart' : ''} accessibility" tabindex="0"></i>
+          <i class="fa-solid fa-heart${media.isLiked ? ' fa-red-heart' : ''} accessibility" tabindex="0"  title="Cliquez pour liker"></i>
         </div>
       </div>
       `;

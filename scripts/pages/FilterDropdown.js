@@ -86,6 +86,8 @@ class FilterDropdown {
       if (e.target !== dropdown) {
         if (!secondClick) {
           filterButtons.forEach((btn) => btn.classList.remove('hidden'));
+          dropdown.firstElementChild.style.borderBottomLeftRadius = '0px';
+          dropdown.firstElementChild.style.borderBottomRightRadius = '0px';
 
         } else {
           const newnode = e.target;

@@ -7,6 +7,10 @@ $color-secondary: #D3573C;
 $color-background: #FAFAFA;
 $color-modal : #DB8876;
 $color-form : #312E2E;
+$color-btn-hover:#ffd1c6;
+
+// border-radius
+$border-radius: 5px;
 
 /* -------------------------
 MEDIA QUERIES 
@@ -15,10 +19,10 @@ MEDIA QUERIES
 $max-width: 1440px;
 
 // breakpoints
-$large: 1024px;
-$medium: 768px;
-$small: 576px;
+$large: 1200px;
+$medium:992px;
+$small: 768px;
 
-$large-up: "only screen and (min-width: #{$large})";
 $medium-up: "only screen and (min-width: #{$medium})";
+$large-up: "only screen and (min-width: #{$large})";
 $small-up: "only screen and (min-width: #{$small})";

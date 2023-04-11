@@ -1,13 +1,11 @@
 @import "utils/reset.scss";
 @import "utils/variables.scss";
+@import "utils/mixins.scss";
 
 body {
     font-family: $font-text;
     max-width: $max-width;
     margin: auto;
-    @media #{$medium-up} {
-        //text-align: center;
-    }
 }
 
 .logo {
@@ -27,6 +25,7 @@ body {
         color: $color-primary;
         font-size: 2em;
         margin-right: 100px;
+
     }
 
     // bannière de la page photographe
@@ -49,7 +48,8 @@ pages d'accueil
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
+    margin-top: 20px;
 
     a {
         text-decoration: none;
@@ -64,8 +64,12 @@ pages d'accueil
 
     &_name {
         color: $color-secondary;
-        font-size: 36px;
+        font-size: 28px;
         margin-top: 10px;
+
+        @media #{$medium-up} {
+            font-size: 36px;
+        }
     }
 
     &_location {
@@ -92,6 +96,8 @@ pages d'accueil
             height: 100%;
             width: 100%;
             border-radius: 50%;
+            box-shadow: 0 5px 5px rgba(0, 1, 5, 0.1);
+            ;
         }
     }
 }
@@ -110,22 +116,44 @@ pages photographes
         justify-content: space-between;
         align-items: center;
         padding: 50px;
+
+        &_button {
+            &:hover {
+                @include btnHover;
+            }
+        }
     }
+
+
     &_media {
         gap: 30px;
         max-width: 1240px;
+        // margin: auto;
         position: absolute;
         display: flex;
         flex-wrap: wrap;
-        margin-top: 400px;
+        //align-items: center;
+        margin-top: 420px;
         margin-right: 100px;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     &_infos {
         &_name {
-            font-size: 64px;
+            font-size: 36px;
             color: $color-secondary;
+
+            @media #{$small-up} {
+                font-size: 40px;
+            }
+
+            @media #{$medium-up} {
+                font-size: 42px;
+            }
+
+            @media #{$large-up} {
+                font-size: 64px;
+            }
         }
 
         &_location {
@@ -142,30 +170,49 @@ pages photographes
 
 /* modale de contact */
 .modal {
-
     position: fixed;
-    left: 28%;
-    top: 60px;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 669px;
     height: 900px;
-    background-color: rgba(255, 255, 255, 1);
     z-index: 100;
-    border-radius: 5px;
+    border-radius: $border-radius;
     background-color: $color-modal;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     padding: 35px;
-    margin: auto;
     animation: lightboxIn .5s;
+
+    &_header {
+        font-size: 64px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+
+        img {
+            &:hover {
+                filter: invert(1);
+            }
+        }
+
+        .close {
+            cursor: pointer;
+
+            &:hover {
+                filter: invert(1);
+            }
+        }
+    }
 
     form {
         display: flex;
         width: 100%;
-       // gap: 20px;
         flex-direction: column;
-        align-items: flex-start;
         margin-top: 20px;
 
         label {
@@ -177,50 +224,36 @@ pages photographes
             width: 100%;
             height: 68px;
             border: none;
-            border-radius: 5px; 
-           
+            border-radius: $border-radius;
         }
+
         .text {
             font-size: 36px;
         }
+
         .form-group {
             width: 100%;
         }
 
-        .contact_button{
+        .contact_button {
             width: 170px;
         }
-
-       
     }
 
     .error-message {
-        color:white;
+        color: white;
         font-size: 24px;
         font-style: italic;
-      }
-      
-      input.error {
-        border: 5px solid $color-primary
-      }
-
-    &_header {
-        font-size: 64px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 20px;
     }
 
-    &_body{
+    input.error {
+        border: 5px solid $color-primary
+    }
+
+    &_body {
         margin: 200px 0;
         font-size: 36px;
     }
-}
-
-figcaption {
-    display: none;
 }
 
 .modal_background {
@@ -231,32 +264,30 @@ figcaption {
     height: 100%;
     background-color: rgba(255, 255, 255, 1);
     z-index: 99;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-
-
-.close {
-    cursor: pointer;
+.contact_button {
+    @include btn;
 }
 
-
-
+.close_button {
+    &:hover {
+        @include btnHoverModale;
+    }
+}
 
 //filtres
 .dropdown {
     display: flex;
     flex-direction: column;
 
-    &_open {   
+    &_open {
         filter: invert(1);
         position: absolute;
         transform: translate(-20px, 15px);
-       height: 30px;
-       width: 30px;       
-    }  
+        height: 30px;
+        width: 30px;
+    }
 }
 
 .filter {
@@ -270,7 +301,7 @@ figcaption {
         margin-right: 20px;
     }
 
-    &_form {  
+    &_form {
         position: relative;
         z-index: 5;
         top: 10px;
@@ -278,19 +309,13 @@ figcaption {
         display: flex;
         align-items: center;
         flex-direction: row;
-    
+        border-radius: 5px;
+
         &_button {
             text-align: left;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            padding: 11px;
-            width: 170px;
-            height: 70px;
-            border: none;
-            background-color: $color-primary;
-            cursor: pointer;
-    
+            @include btn;
+            border-radius: 0px;
+
             &::before {
                 content: '';
                 position: absolute;
@@ -298,24 +323,38 @@ figcaption {
                 width: 150px;
                 margin-left: 0px;
                 background-color: white;
-                margin-top: -26px;
+                margin-top: -27px;
             }
         }
 
-        img{
-           left: 150px;
-           top: 0; 
-        } 
+        &_button:first-child {
+            border-radius: $border-radius;
+
+            &:hover {
+                @include btnHover;
+            }
+        }
+
+        &_button:last-child {
+            border-radius: 0 0 $border-radius $border-radius;
+            box-shadow: 0 5px 5px rgba(0, 1, 5, 0.1);
+            ;
+        }
+
+        img {
+            left: 150px;
+            top: 0;
+        }
 
         .hidden {
             display: none;
-        }     
-    } 
+        }
+    }
 }
 
-//articles dese médias
+//articles des médias
 .media {
-    a{
+    a {
         cursor: pointer;
     }
 
@@ -328,6 +367,7 @@ figcaption {
             object-fit: cover;
             height: 100%;
             width: 100%;
+            border-radius: $border-radius;
         }
     }
 
@@ -343,7 +383,17 @@ figcaption {
         display: flex;
         align-items: center;
         gap: 5px;
+
+        i {
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
+}
+
+figcaption {
+    display: none;
 }
 
 // les likes
@@ -358,29 +408,25 @@ figcaption {
     transition: color 0.5s linear;
 }
 
-
-
-
 //compteur de likes
 .likes_counter {
     font-size: 24px;
-  height: 68px;
+    height: 68px;
     width: 376px;
     position: fixed;
     bottom: 0px;
     right: 36px;
-    background-color: #DB8876;
+    background-color: $color-modal;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: $border-radius;
     font-weight: bold;
     display: flex;
     align-items: center;
-    justify-content: center;
-}
 
-.likes_counter i {
-    margin-left: 5px;
-    color: black
+    i {
+        margin-left: 5px;
+        color: black
+    }
 }
 
 .likes_container {
@@ -388,21 +434,6 @@ figcaption {
     display: flex;
     justify-content: space-between;
 }
-
-.contact_button {
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: $color-primary;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
 
 // la lightbox
 .lightbox {
@@ -416,49 +447,52 @@ figcaption {
     animation: lightboxIn .5s;
     transition: opacity .3s;
 
-    &__prev,
-    &__next {
+    &_prev,
+    &_next {
         border: none;
         background: url(/assets/icons/arrow.svg) center center / 24px 48px no-repeat;
         width: 50px;
         height: 100%;
         position: fixed;
-        top: 10%;
-        right: 0;
-        margin-top: -14px;
+        margin-left: 80px;
+        margin-right: 80px;
         z-index: 11;
     }
 
-    &__next {
-        right: 9%;
+    &_next {
+        right: 0;
         left: auto;
     }
 
-    &__prev {
+    &_prev {
         right: auto;
-        left: 9%;
+        left: 0;
         transform: rotate(180deg);
     }
 
-    &__close {
+    &_close {
         position: fixed;
         height: 42px;
         width: 42px;
         border: none;
         background: url(/assets/icons/xmark-solid.svg) center center / 100% 100% no-repeat transparent;
-        top: 18%;
-        right: 9%;
+        position: absolute;
+        top: 220px;
+        right: 80px;
+        margin-right: 30px;
         z-index: 12;
     }
 
-    &__container {
+    &_container {
+        position: relative;
         margin: 62px 195px;
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
 
-        img, video {
+        img,
+        video {
             object-fit: cover;
             width: 1050px;
             height: 900px;
@@ -468,12 +502,7 @@ figcaption {
 
     button {
         cursor: pointer;
-        transition: opacity .3s;
-        text-indent: -5000px;
-
-        &:hover {
-            opacity: 1;
-        }
+        text-indent: -10000px;
     }
 
     .fadeOut {

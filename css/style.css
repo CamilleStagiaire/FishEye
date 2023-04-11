@@ -51,6 +51,7 @@ body {
   max-width: 1440px;
   margin: auto;
 }
+
 .logo {
   height: 50px;
   margin-top: 35px;
@@ -86,7 +87,8 @@ pages d'accueil
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+  margin-top: 20px;
 }
 .photographer a {
   text-decoration: none;
@@ -99,8 +101,13 @@ pages d'accueil
 }
 .photographer_name {
   color: #D3573C;
-  font-size: 36px;
+  font-size: 28px;
   margin-top: 10px;
+}
+@media only screen and (min-width: 992px) {
+  .photographer_name {
+    font-size: 36px;
+  }
 }
 .photographer_location {
   color: #901C1C;
@@ -123,6 +130,7 @@ pages d'accueil
   height: 100%;
   width: 100%;
   border-radius: 50%;
+  box-shadow: 0 5px 5px rgba(0, 1, 5, 0.1);
 }
 
 /* -------------------------
@@ -140,19 +148,38 @@ pages photographes
   align-items: center;
   padding: 50px;
 }
+.photograph_header_button:hover {
+  color: black;
+  background-color: #DB8876;
+}
 .photograph_media {
   gap: 30px;
   max-width: 1240px;
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 400px;
+  margin-top: 420px;
   margin-right: 100px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .photograph_infos_name {
-  font-size: 64px;
+  font-size: 36px;
   color: #D3573C;
+}
+@media only screen and (min-width: 768px) {
+  .photograph_infos_name {
+    font-size: 40px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .photograph_infos_name {
+    font-size: 42px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .photograph_infos_name {
+    font-size: 64px;
+  }
 }
 .photograph_infos_location {
   font-size: 24px;
@@ -166,27 +193,42 @@ pages photographes
 /* modale de contact */
 .modal {
   position: fixed;
-  left: 28%;
-  top: 60px;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 669px;
   height: 900px;
-  background-color: rgb(255, 255, 255);
   z-index: 100;
   border-radius: 5px;
   background-color: #DB8876;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   padding: 35px;
-  margin: auto;
   animation: lightboxIn 0.5s;
+}
+.modal_header {
+  font-size: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.modal_header img:hover {
+  filter: invert(1);
+}
+.modal_header .close {
+  cursor: pointer;
+}
+.modal_header .close:hover {
+  filter: invert(1);
 }
 .modal form {
   display: flex;
   width: 100%;
   flex-direction: column;
-  align-items: flex-start;
   margin-top: 20px;
 }
 .modal form label {
@@ -216,21 +258,9 @@ pages photographes
 .modal input.error {
   border: 5px solid #901C1C;
 }
-.modal_header {
-  font-size: 64px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
 .modal_body {
   margin: 200px 0;
   font-size: 36px;
-}
-
-figcaption {
-  display: none;
 }
 
 .modal_background {
@@ -241,13 +271,24 @@ figcaption {
   height: 100%;
   background-color: rgb(255, 255, 255);
   z-index: 99;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.close {
+.contact_button {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.close_button:hover {
+  color: black;
+  background-color: #ffd1c6;
 }
 
 .dropdown {
@@ -280,6 +321,7 @@ figcaption {
   display: flex;
   align-items: center;
   flex-direction: row;
+  border-radius: 5px;
 }
 .filter_form_button {
   text-align: left;
@@ -291,7 +333,9 @@ figcaption {
   height: 70px;
   border: none;
   background-color: #901C1C;
+  border-radius: 5px;
   cursor: pointer;
+  border-radius: 0px;
 }
 .filter_form_button::before {
   content: "";
@@ -300,7 +344,18 @@ figcaption {
   width: 150px;
   margin-left: 0px;
   background-color: white;
-  margin-top: -26px;
+  margin-top: -27px;
+}
+.filter_form_button:first-child {
+  border-radius: 5px;
+}
+.filter_form_button:first-child:hover {
+  color: black;
+  background-color: #DB8876;
+}
+.filter_form_button:last-child {
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 5px 5px rgba(0, 1, 5, 0.1);
 }
 .filter_form img {
   left: 150px;
@@ -322,6 +377,7 @@ figcaption {
   object-fit: cover;
   height: 100%;
   width: 100%;
+  border-radius: 5px;
 }
 .media_text {
   display: flex;
@@ -334,6 +390,13 @@ figcaption {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+.media_likes i:hover {
+  cursor: pointer;
+}
+
+figcaption {
+  display: none;
 }
 
 .fa-heart {
@@ -360,9 +423,7 @@ figcaption {
   font-weight: bold;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
-
 .likes_counter i {
   margin-left: 5px;
   color: black;
@@ -372,19 +433,6 @@ figcaption {
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.contact_button {
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901C1C;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .lightbox {
@@ -398,44 +446,47 @@ figcaption {
   animation: lightboxIn 0.5s;
   transition: opacity 0.3s;
 }
-.lightbox__prev, .lightbox__next {
+.lightbox_prev, .lightbox_next {
   border: none;
   background: url(/assets/icons/arrow.svg) center center/24px 48px no-repeat;
   width: 50px;
   height: 100%;
   position: fixed;
-  top: 10%;
-  right: 0;
-  margin-top: -14px;
+  margin-left: 80px;
+  margin-right: 80px;
   z-index: 11;
 }
-.lightbox__next {
-  right: 9%;
+.lightbox_next {
+  right: 0;
   left: auto;
 }
-.lightbox__prev {
+.lightbox_prev {
   right: auto;
-  left: 9%;
+  left: 0;
   transform: rotate(180deg);
 }
-.lightbox__close {
+.lightbox_close {
   position: fixed;
   height: 42px;
   width: 42px;
   border: none;
   background: url(/assets/icons/xmark-solid.svg) center center/100% 100% no-repeat transparent;
-  top: 18%;
-  right: 9%;
+  position: absolute;
+  top: 220px;
+  right: 80px;
+  margin-right: 30px;
   z-index: 12;
 }
-.lightbox__container {
+.lightbox_container {
+  position: relative;
   margin: 62px 195px;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 }
-.lightbox__container img, .lightbox__container video {
+.lightbox_container img,
+.lightbox_container video {
   object-fit: cover;
   width: 1050px;
   height: 900px;
@@ -443,11 +494,7 @@ figcaption {
 }
 .lightbox button {
   cursor: pointer;
-  transition: opacity 0.3s;
-  text-indent: -5000px;
-}
-.lightbox button:hover {
-  opacity: 1;
+  text-indent: -10000px;
 }
 .lightbox .fadeOut {
   opacity: 0;
