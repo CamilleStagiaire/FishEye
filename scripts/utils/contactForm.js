@@ -121,6 +121,12 @@ class FormModal {
     `;
     this.$wrapper.innerHTML = form;
     this.$modalWrapper = this.$wrapper.querySelector('.modal');
+
+    // désactiver en lecture clavier les élements de fond
+    const tabIndexed = document.querySelectorAll('.accessibility');
+    tabIndexed.forEach((tabIndex) => {
+      tabIndex.setAttribute('tabindex', '-1')
+    });
   }
 
   createBackground() {
@@ -145,6 +151,13 @@ class FormModal {
     <button class="contact_button close_button" type="submit" tabindex="0">Fermer</button>
   `;
     document.body.appendChild(modal);
+
+    // désactiver en lecture clavier les élements de fond
+    const tabIndexed = document.querySelectorAll('.accessibility');
+    tabIndexed.forEach((tabIndex) => {
+      tabIndex.setAttribute('tabindex', '-1')
+    });
+
     const closeButton = modal.querySelector('.close');
     closeButton.addEventListener('click', () => {
       this.onClose();
@@ -177,6 +190,11 @@ class FormModal {
       background.style.display = "none";
       element.parentNode.removeChild(element);
     }
+    // réactiver en lecture clavier les élements de fond
+    const tabIndexed = document.querySelectorAll('.accessibility');
+    tabIndexed.forEach((tabIndex) => {
+      tabIndex.setAttribute('tabindex', '0')
+    });
   }
 
   render() {

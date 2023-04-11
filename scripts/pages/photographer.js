@@ -94,7 +94,7 @@ class PhotographerPage {
         <h3 class="media_title">${media.title}</h3>
         <div class="media_likes">
           <h4>${media.likes}</h4>
-          <i class="fa-solid fa-heart${media.isLiked ? ' fa-red-heart' : ''}"></i>
+          <i class="fa-solid fa-heart${media.isLiked ? ' fa-red-heart' : ''} accessibility" tabindex="0"></i>
         </div>
       </div>
       `;
@@ -104,14 +104,14 @@ class PhotographerPage {
       if (media instanceof VideoMedia) {
         mediaTag = `
         <figure>
-          <div class="media_img"><a><video src="${media.url}" tabindex="0"></video></a></div>
+          <div class="media_img"><a><video class="accessibility" src="${media.url}" tabindex="0"></video></a></div>
           <figcaption>${media.title}</figcaption>
         </figure>
         `;
       } else {
         mediaTag = `
           <figure>
-            <div class="media_img"><a><img alt="${media.title}" src="${media.url}" tabindex="0"></a></div>
+            <div class="media_img"><a><img class="accessibility" alt="${media.title}" src="${media.url}" tabindex="0"></a></div>
             <figcaption>${media.title}</figcaption>
           </figure>
         `;
@@ -123,7 +123,6 @@ class PhotographerPage {
       // icône du cœur
       const $likeButton = $wrapper.querySelector('.fa-heart');
       $likeButton.setAttribute('aria-label', 'J\'aime');
-      $likeButton.setAttribute('tabindex', '0');
 
       // Ecouteur d'événements pour le clic
       $likeButton.addEventListener('click', (e) => {
@@ -159,7 +158,7 @@ class PhotographerPage {
         }
       });
 
-      // Ouverture de la lightbox au click sur l'image
+       // Ouverture de la lightbox au click sur l'image
       $wrapper.addEventListener('click', (e) => {
         new Lightbox(media.url);
         console.log(e.target);

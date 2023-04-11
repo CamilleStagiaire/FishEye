@@ -22,6 +22,12 @@ class Lightbox {
         // tableau des éléments
         this.mediaList = Array.from(document.querySelectorAll('.photograph_media .media video, .photograph_media .media img'));
 
+        // désactiver en lecture clavier les élements de fond
+        const tabIndexed = document.querySelectorAll('.accessibility');
+        tabIndexed.forEach((tabIndex) => {
+            tabIndex.setAttribute('tabindex', '-1')
+        });
+
         const closeButton = element.querySelector('.lightbox__close');
         closeButton.addEventListener('click', () => {
             this.close();
@@ -82,6 +88,12 @@ class Lightbox {
             setTimeout(() => {
                 element.parentNode.removeChild(element);
             }, 500);
+
+            // réactiver en lecture clavier les élements de fond
+            const tabIndexed = document.querySelectorAll('.accessibility');
+            tabIndexed.forEach((tabIndex) => {
+                tabIndex.setAttribute('tabindex', '0')
+            });
         }
     }
 
