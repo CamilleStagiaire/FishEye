@@ -3,8 +3,11 @@
 
 body {
     font-family: $font-text;
-    max-width: 1440px;
+    max-width: $max-width;
     margin: auto;
+    @media #{$medium-up} {
+        //text-align: center;
+    }
 }
 
 .logo {
@@ -26,6 +29,7 @@ body {
         margin-right: 100px;
     }
 
+    // bannière de la page photographe
     &_photographer {
         margin-top: 20px;
         margin-left: 100px;
@@ -35,7 +39,9 @@ body {
     }
 }
 
-// page d'accueil
+/* -------------------------
+pages d'accueil
+----------------------------*/
 .photographer {
     width: 30%;
     text-align: center;
@@ -53,7 +59,6 @@ body {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        // gap: 150px 0px;
         margin-top: 70px;
     }
 
@@ -91,7 +96,9 @@ body {
     }
 }
 
-/* pages photographes */
+/* -------------------------
+pages photographes
+----------------------------*/
 .photograph {
     display: flex;
     flex-direction: column;
@@ -103,6 +110,16 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 50px;
+    }
+    &_media {
+        gap: 30px;
+        max-width: 1240px;
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 400px;
+        margin-right: 100px;
+        justify-content: space-between;
     }
 
     &_infos {
@@ -121,178 +138,6 @@ body {
             font-size: 18px;
         }
     }
-}
-
-.photograph_media {
-    gap: 30px;
-    max-width: 1240px;
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 400px;
-    margin-right: 100px;
-    justify-content: space-between;
-}
-
-.media {
-
-    a{
-
-        cursor: pointer;
-    }
-    &_img {
-        width: 350px;
-        height: 300px;
-
-        img,
-        video {
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-        }
-    }
-
-    &_text {
-        display: flex;
-        justify-content: space-between;
-        font-size: 24px;
-        margin-top: 10px;
-        color: $color-primary;
-    }
-  
-
-
-    &_likes {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-}
-
-.fa-heart {
-    -webkit-text-stroke: 1px $color-primary;
-    color: transparent;
-    transition: color 0.5s linear;
-
-}
-
-.fa-red-heart {
-    color: $color-primary;
-    transition: color 0.5s linear;
-}
-
-//filtres
-.filter {
-    display: flex;
-
-    label {
-        margin-top: 20px;
-        margin-right: 10px;
-        font-size: 18px;
-        font-weight: bold;
-        margin-right: 20px;
-    }
-}
-
-.filter-form {
-
-    z-index: 5;
-    top: 10px;
-    left: 12px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-
-    &_button {
-        text-align: left;
-        font-size: 18px;
-        font-weight: bold;
-        color: white;
-        padding: 11px;
-        width: 170px;
-        height: 70px;
-        border: none;
-        background-color: $color-primary;
-
-        cursor: pointer;
-
-        &::before {
-            content: '';
-            position: absolute;
-            height: 1px;
-            width: 150px;
-            margin-left: 0px;
-            background-color: white;
-            margin-top: -26px;
-
-        }
-    }
-
-    img{
-       left: 150px;
-       top: 0; 
-    }
-}
-.filter-form {
-    position: relative;
-  }
-
-.dropdown {
-    display: flex;
-    flex-direction: column;
-
-    &_open {   
-        filter: invert(1);
-        position: absolute;
-        transform: translate(-20px, 15px);
-       height: 30px;
-       width: 30px;       
-    }  
-}
-
-.hidden {
-    display: none;
-}
-
-//counter
-.likes_counter {
-    font-size: 24px;
-  height: 68px;
-    width: 376px;
-    position: fixed;
-    bottom: 0px;
-    right: 36px;
-    background-color: #DB8876;
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.likes_counter i {
-    margin-left: 5px;
-    color: black
-}
-
-.likes_container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.contact_button {
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: $color-primary;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 /* modale de contact */
@@ -391,15 +236,172 @@ figcaption {
     align-items: center;
 }
 
-.modal_background .content {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-}
+
 
 .close {
     cursor: pointer;
 }
+
+
+
+
+//filtres
+.dropdown {
+    display: flex;
+    flex-direction: column;
+
+    &_open {   
+        filter: invert(1);
+        position: absolute;
+        transform: translate(-20px, 15px);
+       height: 30px;
+       width: 30px;       
+    }  
+}
+
+.filter {
+    display: flex;
+
+    label {
+        margin-top: 20px;
+        margin-right: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 20px;
+    }
+
+    &_form {  
+        position: relative;
+        z-index: 5;
+        top: 10px;
+        left: 12px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+    
+        &_button {
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            padding: 11px;
+            width: 170px;
+            height: 70px;
+            border: none;
+            background-color: $color-primary;
+            cursor: pointer;
+    
+            &::before {
+                content: '';
+                position: absolute;
+                height: 1px;
+                width: 150px;
+                margin-left: 0px;
+                background-color: white;
+                margin-top: -26px;
+            }
+        }
+
+        img{
+           left: 150px;
+           top: 0; 
+        } 
+
+        .hidden {
+            display: none;
+        }     
+    } 
+}
+
+//articles dese médias
+.media {
+    a{
+        cursor: pointer;
+    }
+
+    &_img {
+        width: 350px;
+        height: 300px;
+
+        img,
+        video {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &_text {
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+        margin-top: 10px;
+        color: $color-primary;
+    }
+
+    &_likes {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+// les likes
+.fa-heart {
+    -webkit-text-stroke: 1px $color-primary;
+    color: transparent;
+    transition: color 0.5s linear;
+}
+
+.fa-red-heart {
+    color: $color-primary;
+    transition: color 0.5s linear;
+}
+
+
+
+
+//compteur de likes
+.likes_counter {
+    font-size: 24px;
+  height: 68px;
+    width: 376px;
+    position: fixed;
+    bottom: 0px;
+    right: 36px;
+    background-color: #DB8876;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.likes_counter i {
+    margin-left: 5px;
+    color: black
+}
+
+.likes_container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact_button {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: $color-primary;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 
 
 // la lightbox
@@ -444,7 +446,7 @@ figcaption {
         width: 42px;
         border: none;
         background: url(/assets/icons/xmark-solid.svg) center center / 100% 100% no-repeat transparent;
-        top: 15%;
+        top: 18%;
         right: 9%;
         z-index: 12;
     }

@@ -10,85 +10,77 @@ class FormModal {
     this.createForm(photographer);
   }
 
+  /**
+  * validation du formulaire
+  * @param {FormData} formData 
+  * @return {boolean} 
+  */
+  validateForm(formData) {
+    const CARACT_MINI = 2;
+    const nameFormat = /^[a-zA-Z-çéèê\s]+$/;
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let valid = true;
+
+    // Supprime tous les messages d'erreur précédents
+    const errorMessages = this.$wrapper.querySelectorAll('.error-message');
+    errorMessages.forEach(errorMessage => errorMessage.remove());
+
+    formData.forEach((value, key) => {
+      const field = this.$wrapper.querySelector(`#${key}`);
+      field.classList.remove('error');
+      let message = '';
+      if (!value) {
+        message = `Vous devez remplir ce champ`;
+      } else if (key === 'email' && !mailFormat.test(value)) {
+        message = `Le format de l'email n'est pas valide`;
+      } else if (key !== 'email' && key !== 'message' && (value.length < CARACT_MINI || !nameFormat.test(value))) {
+        message = `Ce champ n'est pas valide`;
+      }
+
+      if (message) {
+        valid = false;
+        this.createErrorMessage(field, message);
+      }
+    });
+    return valid;
+  }
+
   onSubmitForm() {
     const form = this.$wrapper.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
 
-      const firstNameInputValue = this.$wrapper.querySelector('#firstname').value;
-      const lastNameInputValue = this.$wrapper.querySelector('#lastname').value;
-      const emailInputValue = this.$wrapper.querySelector('#email').value;
-      const messageInputValue = this.$wrapper.querySelector('#message').value;
-
-      // nombre de caractères minimum
-      const CARACT_MINI = 2;
-
-      // les regex
-      const nameFormat = /^[a-zA-Z-çéèê\s]+$/; // vérification du nom/prénom
-      const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // vérification de l'email
-
-      let valid = true;
-
-      // Supprime tous les messages d'erreur précédents
-      const errorMessages = this.$wrapper.querySelectorAll('.error-message');
-      errorMessages.forEach(errorMessage => errorMessage.remove());
-
-      // Vérification du champ du prénom
-      if (!firstNameInputValue || firstNameInputValue.length < CARACT_MINI || !nameFormat.test(firstNameInputValue)) {
-        console.log('Prénom invalide');
-        valid = false;
-        const firstNameError = document.createElement('div');
-        this.$wrapper.querySelector('#firstname').classList.add('error');
-        firstNameError.classList.add('error-message');
-        firstNameError.innerHTML = 'Le prénom doit contenir au moins 2 caractères';
-        this.$wrapper.querySelector('#firstname').insertAdjacentElement('afterend', firstNameError);
-      }
-
-      // Vérification du champ du nom
-      if (!lastNameInputValue || lastNameInputValue.length < CARACT_MINI || !nameFormat.test(lastNameInputValue)) {
-        console.log('Nom invalide');
-        valid = false;
-        const lastNameError = document.createElement('div');
-        this.$wrapper.querySelector('#lastname').classList.add('error');
-        lastNameError.classList.add('error-message');
-        lastNameError.innerHTML = 'Le nom doit contenir au moins 2 caractères';
-        this.$wrapper.querySelector('#lastname').insertAdjacentElement('afterend', lastNameError);
-      }
-
-      // Vérification du champ de l'email
-      if (!emailInputValue || !mailFormat.test(emailInputValue)) {
-        console.log('Email invalide');
-        valid = false;
-        const emailError = document.createElement('div');
-        this.$wrapper.querySelector('#email').classList.add('error');
-        emailError.classList.add('error-message');
-        emailError.innerHTML = "Le format d'email n'est pas valide";
-        this.$wrapper.querySelector('#email').insertAdjacentElement('afterend', emailError);
-      }
-
-      // Vérification du champ du message
-      if (!messageInputValue) {
-        console.log('Message invalide');
-        valid = false;
-        const messageError = document.createElement('div');
-        this.$wrapper.querySelector('#message').classList.add('error');
-        messageError.classList.add('error-message');
-        messageError.innerHTML = "Vous devez entrer un message";
-        this.$wrapper.querySelector('#message').insertAdjacentElement('afterend', messageError);
-      }
+      const formData = new FormData(form);
+      const valid = this.validateForm(formData);
 
       if (valid) {
-        console.log("votre prénom : " + firstNameInputValue);
-        console.log("votre nom : " + lastNameInputValue);
-        console.log("votre email : " + emailInputValue);
-        console.log("votre message: " + messageInputValue);
+        const { firstname, lastname, email, message } = Object.fromEntries(formData.entries());
+
+        console.log("votre prénom : " + firstname);
+        console.log("votre nom : " + lastname);
+        console.log("votre email : " + email);
+        console.log("votre message: " + message);
 
         this.onClose();
-        this.createBackground()
+        this.createBackground();
         this.createConfirmModal();
       }
     });
   }
+
+/**
+ * création des messages d'erreur
+ * @param {HTMLElement} field 
+ * @param {string} message 
+ */
+  createErrorMessage(field, message) {
+    const error = document.createElement('div');
+    field.classList.add('error');
+    error.classList.add('error-message');
+    error.innerHTML = message;
+    field.insertAdjacentElement('afterend', error);
+  }
+
 
   createForm() {
     const form = `
@@ -187,7 +179,7 @@ class FormModal {
     if (element) {
       element.classList.add('fadeOut');
       const background = document.querySelector('.modal_background');
-      background.style.display = "none";
+      background.parentNode.removeChild(background); // suppression de la div modal_background
       element.parentNode.removeChild(element);
     }
     // réactiver en lecture clavier les élements de fond

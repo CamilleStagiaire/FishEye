@@ -43,12 +43,14 @@ td, th {
   padding: 0;
 }
 
+/* -------------------------
+MEDIA QUERIES 
+----------------------------*/
 body {
   font-family: "DM Sans", sans-serif;
   max-width: 1440px;
   margin: auto;
 }
-
 .logo {
   height: 50px;
   margin-top: 35px;
@@ -74,6 +76,9 @@ body {
   align-items: center;
 }
 
+/* -------------------------
+pages d'accueil
+----------------------------*/
 .photographer {
   width: 30%;
   text-align: center;
@@ -120,7 +125,9 @@ body {
   border-radius: 50%;
 }
 
-/* pages photographes */
+/* -------------------------
+pages photographes
+----------------------------*/
 .photograph {
   display: flex;
   flex-direction: column;
@@ -133,6 +140,16 @@ body {
   align-items: center;
   padding: 50px;
 }
+.photograph_media {
+  gap: 30px;
+  max-width: 1240px;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 400px;
+  margin-right: 100px;
+  justify-content: space-between;
+}
 .photograph_infos_name {
   font-size: 64px;
   color: #D3573C;
@@ -144,159 +161,6 @@ body {
 }
 .photograph_infos_tagline {
   font-size: 18px;
-}
-
-.photograph_media {
-  gap: 30px;
-  max-width: 1240px;
-  position: absolute;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 400px;
-  margin-right: 100px;
-  justify-content: space-between;
-}
-
-.media a {
-  cursor: pointer;
-}
-.media_img {
-  width: 350px;
-  height: 300px;
-}
-.media_img img,
-.media_img video {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
-.media_text {
-  display: flex;
-  justify-content: space-between;
-  font-size: 24px;
-  margin-top: 10px;
-  color: #901C1C;
-}
-.media_likes {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.fa-heart {
-  -webkit-text-stroke: 1px #901C1C;
-  color: transparent;
-  transition: color 0.5s linear;
-}
-
-.fa-red-heart {
-  color: #901C1C;
-  transition: color 0.5s linear;
-}
-
-.filter {
-  display: flex;
-}
-.filter label {
-  margin-top: 20px;
-  margin-right: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  margin-right: 20px;
-}
-
-.filter-form {
-  z-index: 5;
-  top: 10px;
-  left: 12px;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-.filter-form_button {
-  text-align: left;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901C1C;
-  cursor: pointer;
-}
-.filter-form_button::before {
-  content: "";
-  position: absolute;
-  height: 1px;
-  width: 150px;
-  margin-left: 0px;
-  background-color: white;
-  margin-top: -26px;
-}
-.filter-form img {
-  left: 150px;
-  top: 0;
-}
-
-.filter-form {
-  position: relative;
-}
-
-.dropdown {
-  display: flex;
-  flex-direction: column;
-}
-.dropdown_open {
-  filter: invert(1);
-  position: absolute;
-  transform: translate(-20px, 15px);
-  height: 30px;
-  width: 30px;
-}
-
-.hidden {
-  display: none;
-}
-
-.likes_counter {
-  font-size: 24px;
-  height: 68px;
-  width: 376px;
-  position: fixed;
-  bottom: 0px;
-  right: 36px;
-  background-color: #DB8876;
-  padding: 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.likes_counter i {
-  margin-left: 5px;
-  color: black;
-}
-
-.likes_container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.contact_button {
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  border: none;
-  background-color: #901C1C;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 /* modale de contact */
@@ -382,13 +246,144 @@ figcaption {
   align-items: center;
 }
 
-.modal_background .content {
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
+.close {
+  cursor: pointer;
 }
 
-.close {
+.dropdown {
+  display: flex;
+  flex-direction: column;
+}
+.dropdown_open {
+  filter: invert(1);
+  position: absolute;
+  transform: translate(-20px, 15px);
+  height: 30px;
+  width: 30px;
+}
+
+.filter {
+  display: flex;
+}
+.filter label {
+  margin-top: 20px;
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.filter_form {
+  position: relative;
+  z-index: 5;
+  top: 10px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.filter_form_button {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  cursor: pointer;
+}
+.filter_form_button::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 150px;
+  margin-left: 0px;
+  background-color: white;
+  margin-top: -26px;
+}
+.filter_form img {
+  left: 150px;
+  top: 0;
+}
+.filter_form .hidden {
+  display: none;
+}
+
+.media a {
+  cursor: pointer;
+}
+.media_img {
+  width: 350px;
+  height: 300px;
+}
+.media_img img,
+.media_img video {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.media_text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  margin-top: 10px;
+  color: #901C1C;
+}
+.media_likes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fa-heart {
+  -webkit-text-stroke: 1px #901C1C;
+  color: transparent;
+  transition: color 0.5s linear;
+}
+
+.fa-red-heart {
+  color: #901C1C;
+  transition: color 0.5s linear;
+}
+
+.likes_counter {
+  font-size: 24px;
+  height: 68px;
+  width: 376px;
+  position: fixed;
+  bottom: 0px;
+  right: 36px;
+  background-color: #DB8876;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likes_counter i {
+  margin-left: 5px;
+  color: black;
+}
+
+.likes_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact_button {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -429,7 +424,7 @@ figcaption {
   width: 42px;
   border: none;
   background: url(/assets/icons/xmark-solid.svg) center center/100% 100% no-repeat transparent;
-  top: 15%;
+  top: 18%;
   right: 9%;
   z-index: 12;
 }

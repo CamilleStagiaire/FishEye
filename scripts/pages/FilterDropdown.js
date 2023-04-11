@@ -78,7 +78,7 @@ class FilterDropdown {
   }
 
   onChangeFilter() {
-    const filterButtons = this.$wrapper.querySelectorAll('.filter-form_button');
+    const filterButtons = this.$wrapper.querySelectorAll('.filter_form_button');
     const dropdown = this.$wrapper.querySelector('#dropdown');
     let secondClick = false;
 
@@ -112,12 +112,12 @@ class FilterDropdown {
     const filterForm = `
     <div class="filter">
       <label id="filter_label" for="dropdown">Trier par</label>
-      <div class="filter-form" aria-labelledby="filter_label" role="button" aria-haspopup="listbox" aria-expanded="false">    
+      <div class="filter_form" aria-labelledby="filter_label" role="button" aria-haspopup="listbox" aria-expanded="false">    
         <img src="assets/images/chevron.png" class="dropdown_open" alt="open dropdown"/>
         <div class="dropdown" id="dropdown" role="listbox" tabindex="-1" hidden>
-          <button class="filter-form_button accessibility" id="likes-btn" type="button" role="option" aria-activedescendant aria-selected="true" aria-labelledby="dropdown likes-btn" value="likes" tabindex="0">Popularité</button>
-          <button class="filter-form_button accessibility hidden" id="title-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown title-btn" value="title" tabindex="0">Titre</button>
-          <button class="filter-form_button accessibility hidden" id="date-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown date-btn" value="date" tabindex="0">Date</button>
+          <button class="filter_form_button accessibility" id="likes-btn" type="button" role="option" aria-activedescendant aria-selected="true" aria-labelledby="dropdown likes-btn" value="likes" tabindex="0">Popularité</button>
+          <button class="filter_form_button accessibility hidden" id="title-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown title-btn" value="title" tabindex="0">Titre</button>
+          <button class="filter_form_button accessibility hidden" id="date-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown date-btn" value="date" tabindex="0">Date</button>
         </div>
       </div>
     </div>

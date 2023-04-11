@@ -7,3 +7,18 @@ $color-secondary: #D3573C;
 $color-background: #FAFAFA;
 $color-modal : #DB8876;
 $color-form : #312E2E;
+
+/* -------------------------
+MEDIA QUERIES 
+----------------------------*/
+// Largeur max
+$max-width: 1440px;
+
+// breakpoints
+$large: 1024px;
+$medium: 768px;
+$small: 576px;
+
+$large-up: "only screen and (min-width: #{$large})";
+$medium-up: "only screen and (min-width: #{$medium})";
+$small-up: "only screen and (min-width: #{$small})";
