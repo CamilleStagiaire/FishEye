@@ -68,4 +68,5 @@ class Photographer {
         return totalLikes;
     }
 }
+
 export { Photographer };

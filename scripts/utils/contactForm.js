@@ -1,5 +1,3 @@
-import { Photographer } from '../models/Photographer.js';
-
 class FormModal {
   /**
    * @param { Photographer} photographer 
@@ -18,7 +16,7 @@ class FormModal {
   validateForm(formData) {
     const CARACT_MINI = 2;
     const nameFormat = /^[a-zA-Z-çéèê\s]+$/;
-    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     let valid = true;
 
     // Supprime tous les messages d'erreur précédents
@@ -80,7 +78,6 @@ class FormModal {
     error.innerHTML = message;
     field.insertAdjacentElement('afterend', error);
   }
-
 
   createForm() {
     const form = `

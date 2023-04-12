@@ -1,7 +1,5 @@
 import { Lightbox } from '../utils/Lightbox.js';
 import { VideoMedia } from '../models/Media.js';
-import { Photographer } from '../models/Photographer.js';
-import { Media } from '../models/Media.js';
 
 class PhotographerPage {
 

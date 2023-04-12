@@ -1,5 +1,3 @@
-import { Photographer } from '../models/Photographer.js';
-import { Media } from '../models/Media.js';
 import { Filter } from '../utils/Filter.js';
 import { PhotographerPage } from '../pages/photographer.js';
 
