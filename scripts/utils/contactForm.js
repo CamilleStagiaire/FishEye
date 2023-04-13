@@ -1,6 +1,6 @@
 class FormModal {
   /**
-   * @param { Photographer} photographer 
+   * @param {Photographer} photographer 
    */
   constructor(photographer) {
     this._photographer = photographer;
@@ -114,7 +114,7 @@ class FormModal {
     // désactiver en lecture clavier les élements de fond
     const tabIndexed = document.querySelectorAll('.accessibility');
     tabIndexed.forEach((tabIndex) => {
-      tabIndex.setAttribute('tabindex', '-1')
+    tabIndex.setAttribute('tabindex', '-1')
     });
   }
 

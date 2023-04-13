@@ -2,6 +2,7 @@ import { ImageMedia, VideoMedia } from '../models/Media.js';
 
 class MediaFactory {
     /**
+     * Création une instance de la classe ImageMedia ou VideoMedia en fonction du type de média
      * @param {Object} data 
      * @returns {ImageMedia|VideoMedia} 
      */

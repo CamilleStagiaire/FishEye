@@ -4,7 +4,7 @@ import { VideoMedia } from '../models/Media.js';
 class PhotographerPage {
 
   /**
-   * @param {Photographer} photographer 
+   * @param {import('../models/Photographer.js').Photographer} photographer 
    * @param {Media[]} medias 
    */
   constructor(photographer, medias) {
@@ -43,38 +43,14 @@ class PhotographerPage {
     const $wrapper = document.createElement('div');
     $wrapper.classList.add('photographer_photo');
 
-    const photographerPortrait =
-      `<img
+    const photographerPortrait = `
+     <img
      alt="${this._photographer.name}"
      src="${this._photographer.portrait}">
      `;
 
     $wrapper.innerHTML = photographerPortrait;
     return $wrapper;
-  }
-
-  /**
-   * Création de l'encart affichant le nombre total de likes du photographe
-   * @returns {HTMLElement}
-   */
-  createLikesCounter() {
-    const $likesCounter = document.createElement("div");
-    $likesCounter.classList.add("likes_counter");
-    const totalLikes = this._photographer.getTotalLikes();
-    const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
-    $likesCounter.innerHTML = likesText;
-    return $likesCounter;
-  }
-
-  //Mise à jour de l'encart affichant le nombre total de likes du photographe
-  updateLikesCounter() {
-    const $likesCounter = document.querySelector('.likes_counter');
-    const photographer = this._photographer;
-    if (photographer) {
-      const totalLikes = photographer.getTotalLikes();
-      const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${photographer.price} € / jour</span></div>`;
-      $likesCounter.innerHTML = likesText;
-    }
   }
 
   /**
@@ -156,7 +132,7 @@ class PhotographerPage {
         }
       });
 
-       // Ouverture de la lightbox au click sur l'image
+      // Ouverture de la lightbox au click sur l'image
       $wrapper.addEventListener('click', (e) => {
         new Lightbox(media.url);
         console.log(e.target);
@@ -172,6 +148,30 @@ class PhotographerPage {
       console.error('Media is undefined');
     }
     return $wrapper;
+  }
+
+  /**
+     * Création de l'encart affichant le nombre total de likes du photographe
+     * @returns {HTMLElement}
+     */
+  createLikesCounter() {
+    const $likesCounter = document.createElement("div");
+    $likesCounter.classList.add("likes_counter");
+    const totalLikes = this._photographer.getTotalLikes();
+    const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
+    $likesCounter.innerHTML = likesText;
+    return $likesCounter;
+  }
+
+  //Mise à jour de l'encart affichant le nombre total de likes du photographe
+  updateLikesCounter() {
+    const $likesCounter = document.querySelector('.likes_counter');
+    const photographer = this._photographer;
+    if (photographer) {
+      const totalLikes = photographer.getTotalLikes();
+      const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${photographer.price} € / jour</span></div>`;
+      $likesCounter.innerHTML = likesText;
+    }
   }
 }
 

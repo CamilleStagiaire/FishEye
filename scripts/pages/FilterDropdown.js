@@ -4,7 +4,7 @@ import { PhotographerPage } from '../pages/photographer.js';
 class FilterDropdown {
   /**
     * @param {Media[]} medias 
-    * @param {Photographer} photographer
+    * @param {import('../models/Photographer.js').Photographer} photographer
     */
   constructor(medias, photographer) {
     this._medias = medias;
@@ -41,13 +41,11 @@ class FilterDropdown {
     }
 
     const template = new PhotographerPage(this._photographer);
-
     filteredMedias.forEach((media) => {
       this.$mediasWrapper.appendChild(template.createMediaCard(media));
     });
 
     const $likeButtons = this.$mediasWrapper.querySelectorAll('.fa-heart');
-
     // MAJ du compteur de likes au click
     $likeButtons.forEach(($likeButton) => {
       $likeButton.addEventListener('click', () => {
@@ -81,21 +79,28 @@ class FilterDropdown {
     const dropdownOpen = this.$wrapper.querySelector('.dropdown_open');
     let secondClick = false;
 
+    /**
+     * afficher / masquer les boutons de filtre et ajuster les styles
+     * @param {boolean} show boutons affichés (true) ou masqués (false)
+     */
+    function FilterButtons(show) {
+      filterButtons.forEach((btn) => show ? btn.classList.remove('hidden') : btn.classList.add('hidden'));
+      dropdown.firstElementChild.style.borderBottomLeftRadius = show ? '0px' : '5px';
+      dropdown.firstElementChild.style.borderBottomRightRadius = show ? '0px' : '5px';
+      dropdown.lastElementChild.style.borderBottomLeftRadius = show ? '5px' : '0px';
+      dropdown.lastElementChild.style.borderBottomRightRadius = show ? '5px' : '0px';
+    }
+
     dropdown.addEventListener('click', (e) => {
       if (e.target !== dropdown) {
         if (!secondClick) {
-          filterButtons.forEach((btn) => btn.classList.remove('hidden'));
-          dropdown.firstElementChild.style.borderBottomLeftRadius = '0px';
-          dropdown.firstElementChild.style.borderBottomRightRadius = '0px';
+          FilterButtons(true);
         } else {
           const newnode = e.target;
           const first = dropdown.firstElementChild;
           dropdown.insertBefore(newnode, first);
-          filterButtons.forEach((btn) => {
-            if (btn !== newnode) {
-              btn.classList.add('hidden');
-            }
-          });
+          FilterButtons(false);
+          newnode.classList.remove('hidden');
           this.filterMedias(newnode.value);
         }
         secondClick = !secondClick;
@@ -103,15 +108,7 @@ class FilterDropdown {
     });
 
     dropdownOpen.addEventListener('click', () => {
-      if (!secondClick) {
-        filterButtons.forEach((btn) => btn.classList.remove('hidden'));
-        dropdown.firstElementChild.style.borderBottomLeftRadius = '0px';
-        dropdown.firstElementChild.style.borderBottomRightRadius = '0px';
-      } else {
-        filterButtons.forEach((btn) => btn.classList.add('hidden'));
-        dropdown.firstElementChild.style.borderBottomLeftRadius = '4px';
-        dropdown.firstElementChild.style.borderBottomRightRadius = '4px';
-      }
+      FilterButtons(!secondClick);
       secondClick = !secondClick;
     });
   }
@@ -128,9 +125,9 @@ class FilterDropdown {
       <div class="filter_form" aria-labelledby="filter_label" role="button" aria-haspopup="listbox" aria-expanded="false">    
         <img src="assets/images/chevron.png" class="dropdown_open" alt="open dropdown"/>
         <div class="dropdown" id="dropdown" role="listbox" tabindex="-1" hidden>
-          <button class="filter_form_button accessibility" id="likes-btn" type="button" role="option" aria-activedescendant aria-selected="true" aria-labelledby="dropdown likes-btn" value="likes" tabindex="0">Popularité</button>
-          <button class="filter_form_button accessibility hidden" id="title-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown title-btn" value="title" tabindex="0">Titre</button>
-          <button class="filter_form_button accessibility hidden" id="date-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown date-btn" value="date" tabindex="0">Date</button>
+          <button class="filter_form_button" id="likes-btn" type="button" role="option" aria-activedescendant aria-selected="true" aria-labelledby="dropdown likes-btn" value="likes" tabindex="0">Popularité</button>
+          <button class="filter_form_button hidden" id="title-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown title-btn" value="title" tabindex="0">Titre</button>
+          <button class="filter_form_button hidden" id="date-btn" type="button" role="option" aria-activedescendant aria-selected="false" aria-labelledby="dropdown date-btn" value="date" tabindex="0">Date</button>
         </div>
       </div>
     </div>

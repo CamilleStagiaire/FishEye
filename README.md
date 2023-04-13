@@ -16,9 +16,9 @@ https://github.com/CamilleStagiaire/FishEye.git
 
 * Importer les datas
 
-* Afficher le contenu des pages index.html et photographeer.html
+* Afficher le contenu des pages index.html et photographer.html
 
-* Filtrer les médias par titre, date et popularité
+* Filtrer les médias par popularité, titre et date
 
 * Afficher la lightbox
 
@@ -26,10 +26,11 @@ https://github.com/CamilleStagiaire/FishEye.git
 
 * Gérer les likes (incrémentation et remplissage + encart en bas de page)
 
-* Intégrer les maquettes en CSS et les Media queries
+* Intégrer les maquettes en CSS et les media queries
 
 * Gérer l'accessibilité du site (lecteur d'écran et clavier)
 
+* Revue de code
 
 # Compétences évaluées:
 
