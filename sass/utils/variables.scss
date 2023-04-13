@@ -12,6 +12,9 @@ $color-btn-hover:#ffd1c6;
 // border-radius
 $border-radius: 5px;
 
+//box-shadow
+$shadow: -5px 5px 5px 0px rgba(0,0,0,0.1);
+
 /* -------------------------
 MEDIA QUERIES 
 ----------------------------*/
@@ -19,19 +22,8 @@ MEDIA QUERIES
 $max-width: 1440px;
 
 // breakpoints
-//$large: 1200px;
-/////$medium: 992px;
-////$small: 768px;
-
-//$large-up: "only screen and (min-width: #{$medium})and (max-width: #{$large})";
-//$medium-up: "only screen and (min-width: #{$small} and (max-width: #{$medium}-1))";
-//$small-up: "only screen and (max-width: 768px)";
-
-// breakpoints
-//$small: 768px;
 $medium: 992px;
 $large: 1200px;
 
-//$small-up: "only screen and (min-width: #{$small})";
 $medium-up: "only screen and (min-width: #{$medium})";
 $large-up: "only screen and (min-width: #{$large})";

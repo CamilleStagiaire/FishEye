@@ -54,7 +54,10 @@ class Lightbox {
                 const currentIndex = this.mediaList.findIndex(media => media.getAttribute('src') === currentSrc);
                 const nextIndex = currentIndex + direction;
                 if (nextIndex >= 0 && nextIndex < this.mediaList.length) {
-                    this.showMedia(nextIndex);
+                    
+                    setTimeout(() => {
+                        this.showMedia(nextIndex);
+                    }, 500);
                 }
             }
         });
@@ -73,7 +76,7 @@ class Lightbox {
         dom.innerHTML = `
           <button class="lightbox_close" tabindex="0">Fermer</button>
           <button class="lightbox_next" tabindex="0">Suivant</button>
-          <button class="lightbox_prev" tabindex="0">Précédent</button>
+        <button class="lightbox_prev" tabindex="0">Précédent</button>
           <div class="lightbox_container">
             <${mediaType} src="${url}" alt=""${mediaType === 'video' ? ' controls class="lightbox-video"' : ''}></${mediaType}>
           </div>
@@ -113,6 +116,7 @@ class Lightbox {
 
         if (type === 'img') {
             const img = document.createElement('img');
+            
             img.setAttribute('src', src);
             lightboxContainer.appendChild(img);
         } else if (type === 'video') {
@@ -135,7 +139,6 @@ class Lightbox {
             setTimeout(() => {
                 this.showMedia(currentIndex + 1)
             }, 500);
-            ;
         }
     }
 

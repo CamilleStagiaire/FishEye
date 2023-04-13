@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<link href="css/style.css" rel="stylesheet" type="text/css"/>
 		<meta charset="utf-8">
 		<link rel="icon" type="image/png" href="assets/favicon.png">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+		<link href="css/style.css" rel="stylesheet" type="text/css">
 		<title>Fisheye - Photographe</title>
 	</head>
 
 	<body>
 		<header class="banner_photographer">
-			<a href="index.html" tabindex="0"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page"/></a>
+			<a href="index.html" tabindex="0"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" title="Retour à l'accueil"></a>
 		</header>
 		<main id="photograph">
 			<div class="photograph">
 				<div class="photograph_header">
 					<div class="photograph_header_infos"></div>
-					<button class="contact_button photograph_header_button" role="button">Contactez-moi</button>
+					<button class="contact_button photograph_header_button">Contactez-moi</button>
 					<div class="photograph_header_portrait"></div>
 				</div>
 				<div class="dropdown"></div>
 				<div class="photograph_media"></div>
-				
 			</div>
 		</main>
 		<div class="photograph_likes"></div>
 
+		<script src="scripts/AppMedia.js" type="module"></script>
 	</body>
-	<script src="scripts/AppMedia.js" type="module"></script>
 </html>

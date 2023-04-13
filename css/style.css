@@ -97,7 +97,7 @@ pages d'accueil
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 .photographer_name {
   color: #D3573C;
@@ -130,7 +130,6 @@ pages d'accueil
   height: 100%;
   width: 100%;
   border-radius: 50%;
-  box-shadow: 0 5px 5px rgba(0, 1, 5, 0.1);
 }
 
 /* -------------------------
@@ -196,6 +195,7 @@ pages photographes
   height: 900px;
   z-index: 100;
   border-radius: 5px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.1);
   background-color: #DB8876;
   display: flex;
   flex-direction: column;
@@ -264,7 +264,7 @@ pages photographes
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.5);
   z-index: 99;
 }
 
@@ -350,11 +350,12 @@ pages photographes
 }
 .filter_form_button:last-child {
   border-radius: 0 0 5px 5px;
-  box-shadow: 0 5px 5px rgba(0, 1, 5, 0.1);
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.1);
 }
 .filter_form img {
   left: 150px;
   top: 0;
+  cursor: pointer;
 }
 .filter_form .hidden {
   display: none;
@@ -462,25 +463,25 @@ figcaption {
   transform: rotate(180deg);
 }
 .lightbox_close {
-  position: fixed;
-  height: 100%;
+  position: absolute;
+  height: 20%;
   width: 34px;
   border: none;
   background: url(/assets/icons/xmark-solid.svg) center center/100% 100% no-repeat transparent;
   position: fixed;
-  margin-top: -250px;
+  margin-top: 120px;
   right: 120px;
   left: auto;
   z-index: 12;
 }
 @media only screen and (min-width: 992px) {
   .lightbox_close {
-    margin-top: -330px;
+    margin-top: 40px;
   }
 }
 @media only screen and (min-width: 1200px) {
   .lightbox_close {
-    margin-top: -430px;
+    margin-top: -50px;
   }
 }
 .lightbox_container {
@@ -496,6 +497,7 @@ figcaption {
   object-fit: cover;
   width: 700px;
   height: 550px;
+  border-radius: 5px;
   animation: lightboxIn 0.5s;
 }
 @media only screen and (min-width: 992px) {

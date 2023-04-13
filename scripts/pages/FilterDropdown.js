@@ -78,6 +78,7 @@ class FilterDropdown {
   onChangeFilter() {
     const filterButtons = this.$wrapper.querySelectorAll('.filter_form_button');
     const dropdown = this.$wrapper.querySelector('#dropdown');
+    const dropdownOpen = this.$wrapper.querySelector('.dropdown_open');
     let secondClick = false;
 
     dropdown.addEventListener('click', (e) => {
@@ -86,7 +87,6 @@ class FilterDropdown {
           filterButtons.forEach((btn) => btn.classList.remove('hidden'));
           dropdown.firstElementChild.style.borderBottomLeftRadius = '0px';
           dropdown.firstElementChild.style.borderBottomRightRadius = '0px';
-
         } else {
           const newnode = e.target;
           const first = dropdown.firstElementChild;
@@ -100,6 +100,19 @@ class FilterDropdown {
         }
         secondClick = !secondClick;
       }
+    });
+
+    dropdownOpen.addEventListener('click', () => {
+      if (!secondClick) {
+        filterButtons.forEach((btn) => btn.classList.remove('hidden'));
+        dropdown.firstElementChild.style.borderBottomLeftRadius = '0px';
+        dropdown.firstElementChild.style.borderBottomRightRadius = '0px';
+      } else {
+        filterButtons.forEach((btn) => btn.classList.add('hidden'));
+        dropdown.firstElementChild.style.borderBottomLeftRadius = '4px';
+        dropdown.firstElementChild.style.borderBottomRightRadius = '4px';
+      }
+      secondClick = !secondClick;
     });
   }
 
