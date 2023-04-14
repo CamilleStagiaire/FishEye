@@ -1,4 +1,4 @@
-class Filter {
+class FilterMedias {
   /**
    * @param {Media[]} medias 
    */
@@ -40,4 +40,4 @@ class Filter {
   }
 }
 
-export { Filter };
+export { FilterMedias };

@@ -71,12 +71,11 @@ class Lightbox {
     buildDOM(url) {
         const dom = document.createElement('div');
         dom.classList.add('lightbox');
-        dom.setAttribute('tabindex', '0');
         const mediaType = url.endsWith('.mp4') ? 'video' : 'img';
         dom.innerHTML = `
           <button class="lightbox_close" tabindex="0">Fermer</button>
           <button class="lightbox_next" tabindex="0">Suivant</button>
-        <button class="lightbox_prev" tabindex="0">Précédent</button>
+          <button class="lightbox_prev" tabindex="0">Précédent</button>
           <div class="lightbox_container">
             <${mediaType} src="${url}" alt=""${mediaType === 'video' ? ' controls class="lightbox-video"' : ''}></${mediaType}>
           </div>
@@ -116,7 +115,6 @@ class Lightbox {
 
         if (type === 'img') {
             const img = document.createElement('img');
-            
             img.setAttribute('src', src);
             lightboxContainer.appendChild(img);
         } else if (type === 'video') {

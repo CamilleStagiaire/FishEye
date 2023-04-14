@@ -1,4 +1,4 @@
-import { Lightbox } from '../utils/Lightbox.js';
+import { Lightbox } from '../components/Lightbox.js';
 import { VideoMedia } from '../models/Media.js';
 
 class PhotographerPage {
@@ -98,50 +98,46 @@ class PhotographerPage {
       const $likeButton = $wrapper.querySelector('.fa-heart');
       $likeButton.setAttribute('aria-label', 'J\'aime');
 
-      // Ecouteur d'événements pour le clic
-      $likeButton.addEventListener('click', (e) => {
+      /**
+       * gestion des likes
+       * @param {Event} e 
+       */
+      const manageLikes = (e) => {
         e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
-        if (!media.isLiked) {
+        const isLiked = media.isLiked;
+        if (!isLiked) {
           media.addLike();
-          $wrapper.querySelector('.media_likes h4').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
           $likeButton.classList.add('fa-red-heart');
         } else {
           media.likes--;
           media._isLiked = false;
-          $wrapper.querySelector('.media_likes h4').textContent = media.likes;
           $likeButton.classList.remove('fa-red-heart');
         }
-        this.updateLikesCounter(); // Mise à jour le total des likes du photographe 
+        $wrapper.querySelector('.media_likes h4').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
+        this.createAndUpdateLikesCounter(); // Mise à jour le total des likes du photographe
+      }
+
+      // Ecouteurs d"évenements pour les likes
+      $likeButton.addEventListener('click', (e) => {
+        manageLikes(e);
       });
 
-      // Ecouteur d'événements pour la touche 'enter'
       $likeButton.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-          e.stopPropagation(); // Empêche le Lightbox de s'ouvrir
-          if (!media.isLiked) {
-            media.addLike();
-            $wrapper.querySelector('.media_likes h4').textContent = media.likes; // Mise à jour le nombre de likes dans le DOM
-            $likeButton.classList.add('fa-red-heart');
-          } else {
-            media.likes--;
-            media._isLiked = false;
-            $wrapper.querySelector('.media_likes h4').textContent = media.likes;
-            $likeButton.classList.remove('fa-red-heart');
-          }
-          this.updateLikesCounter();
+          manageLikes(e);
         }
       });
 
-      // Ouverture de la lightbox au click sur l'image
-      $wrapper.addEventListener('click', (e) => {
+      // Fonction qui ouvre la lightbox
+      const openLightbox = () => {
         new Lightbox(media.url);
-        console.log(e.target);
-      });
+      };
 
-      // Ouverture de la lightbox avec la touche "Enter" sur l'image
+      // Ecouteurs d'événements pour l'ouverture de la lightbox
+      $wrapper.addEventListener('click', openLightbox);
       $wrapper.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-          new Lightbox(media.url);
+          openLightbox();
         }
       });
     } else {
@@ -151,27 +147,19 @@ class PhotographerPage {
   }
 
   /**
-     * Création de l'encart affichant le nombre total de likes du photographe
-     * @returns {HTMLElement}
-     */
-  createLikesCounter() {
-    const $likesCounter = document.createElement("div");
+  * Création / MAJ de l'encart affichant le nombre total de likes du photographe
+  * @returns {HTMLElement}
+  */
+  createAndUpdateLikesCounter() {
+    const $likesCounter = document.querySelector('.likes_counter') || document.createElement("div");
     $likesCounter.classList.add("likes_counter");
-    const totalLikes = this._photographer.getTotalLikes();
-    const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${this._photographer.price} € / jour</span></div>`;
-    $likesCounter.innerHTML = likesText;
-    return $likesCounter;
-  }
-
-  //Mise à jour de l'encart affichant le nombre total de likes du photographe
-  updateLikesCounter() {
-    const $likesCounter = document.querySelector('.likes_counter');
     const photographer = this._photographer;
     if (photographer) {
       const totalLikes = photographer.getTotalLikes();
       const likesText = `<div class="likes_container"><span class="totalLikes">${totalLikes} <i class="fa-solid fa-heart"></i></span><span> ${photographer.price} € / jour</span></div>`;
       $likesCounter.innerHTML = likesText;
     }
+    return $likesCounter;
   }
 }
 

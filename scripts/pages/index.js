@@ -1,9 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-import { Photographer } from '../models/Photographer.js';
-
 class PhotographerCard {
   /**
-   * @param {Photographer} photographer 
+   * @param {import('../models/Photographer.js').Photographer} photographer 
    */
   constructor(photographer) {
     this._photographer = photographer

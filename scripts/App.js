@@ -2,7 +2,6 @@ import { PhotographerApi } from './api/Api.js';
 import { Photographer } from './models/Photographer.js';
 import { PhotographerCard } from './pages/index.js';
 
-
 class App {
   constructor() {
     this.$photographersSection = document.querySelector('.photographer_section')
@@ -25,5 +24,3 @@ class App {
 
 const app = new App()
 app.main()
-
-

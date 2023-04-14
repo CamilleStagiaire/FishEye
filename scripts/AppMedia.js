@@ -1,11 +1,10 @@
-//import { ImageMedia, VideoMedia } from './factories/Media.js';
-import { Photographer } from './models/Photographer.js';
-import { MediaFactory } from './factories/MediaFactory.js';
 import { MediaApi, PhotographerApi } from './api/Api.js';
-import { Filter } from './utils/Filter.js';
-import { FilterDropdown } from './pages/FilterDropdown.js';
-import { FormModal } from './utils/ContactForm.js';
+import { FilterDropdown } from './components/FilterDropdown.js';
+import { FormModal } from './components/ContactForm.js';
+import { MediaFactory } from './factories/MediaFactory.js';
+import { Photographer } from './models/Photographer.js';
 import { PhotographerPage } from './pages/photographer.js';
+import { FilterMedias } from './utils/FilterMedias.js';
 
 class AppMedia {
   constructor() {
@@ -37,7 +36,7 @@ class AppMedia {
     });
 
     // Tri des médias par popularité
-    const filterMedias = new Filter(medias);
+    const filterMedias = new FilterMedias(medias);
     const filteredMedias = filterMedias.filterByLikes();
 
     // Vérification si le photographe est trouvé
@@ -49,7 +48,7 @@ class AppMedia {
       this.$photographersPortrait.appendChild(template.createPhotographerPortrait());
 
       // Création de l'encart pour le total des likes
-      const likesCounter = template.createLikesCounter(filteredMedias);
+      const likesCounter = template.createAndUpdateLikesCounter(filteredMedias);
       this.$photographersLikes.appendChild(likesCounter);
 
       // Création et initialisation du filtre
@@ -68,6 +67,7 @@ class AppMedia {
         modal.render();
         this.$photographersPortrait.appendChild(modal.$wrapper);
 
+        // fermeture de la modale de contact
         const closeButton = document.querySelector('.close');
         closeButton.addEventListener('click', () => {
           modal.onClose();

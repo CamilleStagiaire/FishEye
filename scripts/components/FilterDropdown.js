@@ -1,4 +1,4 @@
-import { Filter } from '../utils/Filter.js';
+import { FilterMedias } from '../utils/FilterMedias.js';
 import { PhotographerPage } from '../pages/photographer.js';
 
 class FilterDropdown {
@@ -22,7 +22,7 @@ class FilterDropdown {
   async filterMedias(filterBy) {
     this.clearMediasWrapper();
 
-    const filterMedias = new Filter(this._medias);
+    const filterMedias = new FilterMedias(this._medias);
     let filteredMedias = [];
 
     switch (filterBy) {
@@ -45,19 +45,20 @@ class FilterDropdown {
       this.$mediasWrapper.appendChild(template.createMediaCard(media));
     });
 
+    //MAJ du compteur de likes au click et au clavier
     const $likeButtons = this.$mediasWrapper.querySelectorAll('.fa-heart');
-    // MAJ du compteur de likes au click
+    const manageLikesUpdate = () => {
+      const totalLikes = filteredMedias.reduce((acc, media) => acc + media.likes, 0);
+      this.updateLikesCountered(totalLikes);
+    }
+
+    // Ecouteurs d'événements pour la mise à jour du compteur de likes
     $likeButtons.forEach(($likeButton) => {
-      $likeButton.addEventListener('click', () => {
-        const totalLikes = filteredMedias.reduce((acc, media) => acc + media.likes, 0);
-        this.updateLikesCountered(totalLikes);
-      });
-    });
-    // MAJ du compteur de likes au clavier
-    $likeButtons.forEach(($likeButton) => {
-      $likeButton.addEventListener('keydown', () => {
-        const totalLikes = filteredMedias.reduce((acc, media) => acc + media.likes, 0);
-        this.updateLikesCountered(totalLikes);
+      $likeButton.addEventListener('click', manageLikesUpdate);
+      $likeButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          manageLikesUpdate();
+        }
       });
     });
   }
@@ -108,7 +109,9 @@ class FilterDropdown {
     });
 
     dropdownOpen.addEventListener('click', () => {
-      FilterButtons(!secondClick);
+      if (!secondClick) {
+        FilterButtons(true);
+      }
       secondClick = !secondClick;
     });
   }

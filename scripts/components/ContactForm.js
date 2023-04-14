@@ -53,7 +53,6 @@ class FormModal {
 
       if (valid) {
         const { firstname, lastname, email, message } = Object.fromEntries(formData.entries());
-
         console.log("votre prénom : " + firstname);
         console.log("votre nom : " + lastname);
         console.log("votre email : " + email);
@@ -66,11 +65,11 @@ class FormModal {
     });
   }
 
-/**
- * création des messages d'erreur
- * @param {HTMLElement} field 
- * @param {string} message 
- */
+  /**
+   * création des messages d'erreur
+   * @param {HTMLElement} field 
+   * @param {string} message 
+   */
   createErrorMessage(field, message) {
     const error = document.createElement('div');
     field.classList.add('error');
@@ -114,7 +113,7 @@ class FormModal {
     // désactiver en lecture clavier les élements de fond
     const tabIndexed = document.querySelectorAll('.accessibility');
     tabIndexed.forEach((tabIndex) => {
-    tabIndex.setAttribute('tabindex', '-1')
+      tabIndex.setAttribute('tabindex', '-1')
     });
   }
 
@@ -130,15 +129,15 @@ class FormModal {
     modal.setAttribute('tabindex', '0');
 
     modal.innerHTML = `
-    <div class="modal_header">
-      <h2>Confirmation</h2>
-      <img src="assets/icons/close.svg" alt="fermeture" class="close" tabindex="0"/>
-    </div>
-    <div class="modal_body">
-      <p>Votre message a bien été envoyé.</p>
-    </div>
-    <button class="contact_button close_button" type="submit" tabindex="0">Fermer</button>
-  `;
+      <div class="modal_header">
+        <h2>Confirmation</h2>
+        <img src="assets/icons/close.svg" alt="fermeture" class="close close_modal" tabindex="0"/>
+      </div>
+      <div class="modal_body">
+        <p>Votre message a bien été envoyé.</p>
+      </div>
+      <button class="contact_button close_modal" type="submit" tabindex="0">Fermer</button>
+    `;
     document.body.appendChild(modal);
 
     // désactiver en lecture clavier les élements de fond
@@ -147,27 +146,20 @@ class FormModal {
       tabIndex.setAttribute('tabindex', '-1')
     });
 
-    const closeButton = modal.querySelector('.close');
-    closeButton.addEventListener('click', () => {
+    // fermeture de la modale de confirmation
+    const closeButtons = modal.querySelectorAll('.close_modal');
+    const closeModal = () => {
       this.onClose();
       modal.remove();
-    });
-    closeButton.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        this.onClose();
-        modal.remove();
-      }
-    });
-    const closeBtn = modal.querySelector('.close_button');
-    closeBtn.addEventListener('click', () => {
-      this.onClose();
-      modal.remove();
-    });
-    closeBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        this.onClose();
-        modal.remove();
-      }
+    };
+
+    closeButtons.forEach((closeButton) => {
+      closeButton.addEventListener('click', closeModal);
+      closeButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          closeModal();
+        }
+      });
     });
   }
 
