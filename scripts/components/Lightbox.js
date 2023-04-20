@@ -47,18 +47,10 @@ class Lightbox {
         document.addEventListener('keyup', (e) => {
             if (e.key === 'Escape') {
                 this.close();
-            } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                const direction = e.key === 'ArrowRight' ? 1 : -1;
-                const currentMedia = document.querySelector('.lightbox_container video, .lightbox_container img');
-                const currentSrc = currentMedia.getAttribute('src');
-                const currentIndex = this.mediaList.findIndex(media => media.getAttribute('src') === currentSrc);
-                const nextIndex = currentIndex + direction;
-                if (nextIndex >= 0 && nextIndex < this.mediaList.length) {
-                    
-                    setTimeout(() => {
-                        this.showMedia(nextIndex);
-                    }, 500);
-                }
+            } else if (e.key === 'ArrowRight') {
+                this.showNext();
+            } else if (e.key === 'ArrowLeft') {
+                this.showPrev();
             }
         });
     }

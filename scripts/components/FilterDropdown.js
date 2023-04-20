@@ -19,7 +19,7 @@ class FilterDropdown {
    * Applique le filtre sélectionné sur les médias et met à jour l'affichage
    * @param {string} filterBy 
    */
-  async filterMedias(filterBy) {
+filterMedias(filterBy) {
     this.clearMediasWrapper();
 
     const filterMedias = new FilterMedias(this._medias);
